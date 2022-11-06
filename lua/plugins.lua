@@ -46,7 +46,9 @@ packer.startup(function(use)
   use 'rhysd/accelerated-jk'
   use 'akinsho/nvim-bufferline.lua'
   -- use 'github/copilot.vim'
-
+  use {
+    'terrortylor/nvim-comment',
+  }
   use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim' -- For git blame & browse
 end)
