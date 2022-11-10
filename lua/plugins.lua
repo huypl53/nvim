@@ -9,8 +9,15 @@ vim.cmd [[packadd packer.nvim]]
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
+    'folke/tokyonight.nvim',
+    config = function()
+      require('tokyonight').setup({
+        style = 'moon',
+        light_style = 'night',
+        transparent = true,
+      })
+      vim.cmd [[colorscheme tokyonight]]
+    end
   }
   use 'nvim-lualine/lualine.nvim' -- Statusline
   use 'nvim-lua/plenary.nvim' -- Common utilities
