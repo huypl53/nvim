@@ -33,7 +33,11 @@ packer.startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    run = function() 
+      require 'nvim-treesitter.install'.compilers = { 'zig' }
+      require('nvim-treesitter.install').update({ with_sync = true })
+      require('nvim-treesitter.install').prefer_git = false
+    end,
   }
   use 'kevinhwang91/nvim-bqf' -- Friendly quickfix
   use 'kyazdani42/nvim-web-devicons' -- File icons
