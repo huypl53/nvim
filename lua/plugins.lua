@@ -33,7 +33,7 @@ packer.startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function() 
+    run = function()
       require 'nvim-treesitter.install'.compilers = { 'zig' }
       require('nvim-treesitter.install').update({ with_sync = true })
       require('nvim-treesitter.install').prefer_git = false

@@ -11,9 +11,9 @@ ts.setup {
     disable = {},
   },
   ensure_installed = {
+    "vim",
     "tsx",
     "toml",
-    "fish",
     "php",
     "json",
     "yaml",
