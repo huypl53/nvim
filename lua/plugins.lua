@@ -59,6 +59,8 @@ packer.startup(function(use)
   -- use 'github/copilot.vim'
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+  use 'chentoast/marks.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim' -- For git blame & browse
   use {
