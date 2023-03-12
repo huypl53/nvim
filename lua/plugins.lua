@@ -42,7 +42,12 @@ packer.startup(function(use)
   use 'kevinhwang91/nvim-bqf' -- Friendly quickfix
   use 'kyazdani42/nvim-web-devicons' -- File icons
   use 'lukas-reineke/indent-blankline.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
+    }
+  }
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'

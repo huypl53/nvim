@@ -2,6 +2,7 @@ local status, telescope = pcall(require, "telescope")
 if (not status) then return end
 local actions = require('telescope.actions')
 local builtin = require("telescope.builtin")
+local lga_actions = require("telescope-live-grep-args.actions")
 
 local function telescope_buffer_dir()
   return vim.fn.expand('%:p:h')
@@ -37,10 +38,25 @@ telescope.setup {
         },
       },
     },
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+      -- define mappings, e.g.
+      mappings = { -- extend mappings
+        i = {
+          ["<C-k>"] = lga_actions.quote_prompt(),
+          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        },
+      },
+      -- ... also accepts theme settings, for example:
+      theme = "dropdown", -- use dropdown theme
+      -- theme = { }, -- use own theme spec
+      -- layout_config = { mirror=true }, -- mirror preview pane
+    }
   },
 }
 
 telescope.load_extension("file_browser")
+telescope.load_extension("live_grep_args")
 
 vim.keymap.set('n', ';f',
   function()
@@ -75,4 +91,8 @@ vim.keymap.set("n", "sf", function()
     initial_mode = "normal",
     layout_config = { height = 40 }
   })
+end)
+
+vim.keymap.set("n", ";a", function()
+  telescope.extensions.live_grep_args.live_grep_args()
 end)
