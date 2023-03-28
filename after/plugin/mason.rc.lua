@@ -11,7 +11,7 @@ mason.setup({
     "astro",
     "cssls",
     "tailwindcss",
-    "lua_ls",
+    "lua-language-server",
     "flow",
     "tsserver",
     "pyright"

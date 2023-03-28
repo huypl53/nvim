@@ -26,6 +26,12 @@ ls.add_snippets("javascript", {
 })
 
 ls.add_snippets("javascript", {
+  s("clg", {
+    t("console.log({"), i(1), t("});"), i(0)
+  })
+})
+
+ls.add_snippets("javascript", {
   s("rcs", {
     t({ "\tconst [" }), i(1),
     f(function(args, _, _)
