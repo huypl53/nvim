@@ -106,7 +106,13 @@ nvim_lsp.lua_ls.setup {
 }
 
 nvim_lsp.tailwindcss.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    local status, tailwindcss_color = pcall(require, "tailwindcss-colors")
+    if (status) then
+      tailwindcss_color.buf_attach(bufnr)
+    end
+  end,
   capabilities = capabilities
 }
 

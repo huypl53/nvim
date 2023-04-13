@@ -19,13 +19,13 @@ packer.startup(function(use)
       vim.cmd [[colorscheme tokyonight]]
     end
   }
-  use 'nvim-lualine/lualine.nvim' -- Statusline
-  use 'nvim-lua/plenary.nvim' -- Common utilities
-  use 'onsails/lspkind-nvim' -- vscode-like pictograms
-  use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-  use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-  use 'hrsh7th/nvim-cmp' -- Completion
-  use 'neovim/nvim-lspconfig' -- LSP
+  use 'nvim-lualine/lualine.nvim'       -- Statusline
+  use 'nvim-lua/plenary.nvim'           -- Common utilities
+  use 'onsails/lspkind-nvim'            -- vscode-like pictograms
+  use 'hrsh7th/cmp-buffer'              -- nvim-cmp source for buffer words
+  use 'hrsh7th/cmp-nvim-lsp'            -- nvim-cmp source for neovim's built-in LSP
+  use 'hrsh7th/nvim-cmp'                -- Completion
+  use 'neovim/nvim-lspconfig'           -- LSP
   use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
@@ -36,11 +36,11 @@ packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = function()
       require 'nvim-treesitter.install'.compilers = { 'zig' }
-      require('nvim-treesitter.install').update({ with_sync = true })
-      require('nvim-treesitter.install').prefer_git = false
+      -- require('nvim-treesitter.install').update({ with_sync = true })
+      -- require('nvim-treesitter.install').prefer_git = false
     end,
   }
-  use 'kevinhwang91/nvim-bqf' -- Friendly quickfix
+  use 'kevinhwang91/nvim-bqf'        -- Friendly quickfix
   use 'kyazdani42/nvim-web-devicons' -- File icons
   use 'lukas-reineke/indent-blankline.nvim'
   use {
@@ -72,5 +72,16 @@ packer.startup(function(use)
   use {
     'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
+  }
+
+  use { -- tailwindcss-colors
+    "themaxmarchuk/tailwindcss-colors.nvim",
+    -- load only on require("tailwindcss-colors")
+    module = "tailwindcss-colors",
+    -- run the setup function after plugin is loaded
+    config = function()
+      -- pass config options here (or nothing to use defaults)
+      require("tailwindcss-colors").setup()
+    end
   }
 end)
