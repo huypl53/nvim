@@ -36,7 +36,12 @@ packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = function()
       -- require 'nvim-treesitter.install'.compilers = { 'zig' }
-      require 'nvim-treesitter.install'.compilers = { 'clang' }
+      if vim.fn.has('win32') or vim.fn.has('macunix')
+      then
+        require 'nvim-treesitter.install'.compilers = { 'clang' }
+      else
+        require 'nvim-treesitter.install'.compilers = { 'gcc' }
+      end
       -- require('nvim-treesitter.install').update({ with_sync = true })
       require('nvim-treesitter.install').prefer_git = false
     end,
