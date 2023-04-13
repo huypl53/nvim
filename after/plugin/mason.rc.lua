@@ -12,6 +12,7 @@ mason.setup({
     "cssls",
     "tailwindcss",
     "lua-language-server",
+    "html-lsp",
     "flow",
     "tsserver",
     "pyright"
