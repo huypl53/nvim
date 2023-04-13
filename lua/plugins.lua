@@ -35,9 +35,10 @@ packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
-      require 'nvim-treesitter.install'.compilers = { 'zig' }
+      -- require 'nvim-treesitter.install'.compilers = { 'zig' }
+      require 'nvim-treesitter.install'.compilers = { 'clang' }
       -- require('nvim-treesitter.install').update({ with_sync = true })
-      -- require('nvim-treesitter.install').prefer_git = false
+      require('nvim-treesitter.install').prefer_git = false
     end,
   }
   use 'kevinhwang91/nvim-bqf'        -- Friendly quickfix
