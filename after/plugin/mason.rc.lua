@@ -9,13 +9,12 @@ mason.setup({
     "dockerls",
     "yamlls",
     "astro",
-    "cssls",
+    "cssmodules_ls",
     "tailwindcss",
     "lua_ls",
     "html",
     "flow",
     "tsserver",
-    "tailwindcss",
     "pyright"
 
   }

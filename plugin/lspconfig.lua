@@ -121,9 +121,13 @@ nvim_lsp.html.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.cssls.setup {
+nvim_lsp.cssmodules_ls.setup {
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
+  init_options = {
+    camelCase = 'dashes',
+  },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", }
 }
 
 nvim_lsp.astro.setup {
