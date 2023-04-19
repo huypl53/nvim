@@ -60,6 +60,7 @@ packer.startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use 'norcalli/nvim-colorizer.lua'
   use 'folke/zen-mode.nvim'
+  use 'folke/twilight.nvim'
   use 'tpope/vim-surround'
   use 'liuchengxu/vista.vim'
   use({

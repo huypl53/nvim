@@ -127,7 +127,7 @@ nvim_lsp.cssmodules_ls.setup {
   init_options = {
     camelCase = 'dashes',
   },
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", }
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "scss" }
 }
 
 nvim_lsp.astro.setup {
