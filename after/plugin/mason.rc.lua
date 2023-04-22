@@ -15,8 +15,7 @@ mason.setup({
     "html",
     "flow",
     "tsserver",
-    "pyright"
-
+    "pyright",
   }
 })
 
