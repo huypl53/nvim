@@ -2,6 +2,7 @@ local keymap = vim.keymap
 
 keymap.set('i', 'kj', '<Esc>')
 keymap.set('i', 'jk', '<Esc>')
+keymap.set('i', '<C-l>', '<Esc>A')
 
 keymap.set('n', 'x', '"_x')
 
