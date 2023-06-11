@@ -41,3 +41,7 @@ keymap.set('n', '<C-w><down>', '<C-w>-')
 
 -- Scroll bind
 keymap.set('n', 'sb', ':windo set scb!<CR>')
+
+-- Fold method
+keymap.set('n', 'sgm', ':set fdm=manual<CR>')
+keymap.set('n', 'sgi', ':set fdm=indent<CR>')
