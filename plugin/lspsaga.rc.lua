@@ -36,7 +36,7 @@ saga.setup {
   definition = {
     edit = "<C-c>o",
     vsplit = "<C-c>v",
-    split = "<C-c>i",
+    split = "<C-c>s",
     tabe = "<C-c>t",
     quit = "q",
   }
