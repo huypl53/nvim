@@ -2,6 +2,7 @@ local keymap = vim.keymap
 
 keymap.set('i', 'kj', '<Esc>')
 keymap.set('i', 'jk', '<Esc>')
+keymap.set('i', '<C-l>', '<Esc>A')
 
 keymap.set('n', 'x', '"_x')
 
@@ -40,3 +41,7 @@ keymap.set('n', '<C-w><down>', '<C-w>-')
 
 -- Scroll bind
 keymap.set('n', 'sb', ':windo set scb!<CR>')
+
+-- Fold method
+keymap.set('n', 'sgm', ':set fdm=manual<CR>')
+keymap.set('n', 'sgi', ':set fdm=indent<CR>')

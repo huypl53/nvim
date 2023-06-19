@@ -10,7 +10,7 @@ ls.add_snippets("javascript", {
     t({ "import React from 'react';" }),
     t({ "", "", "" }),
     f(function(args, _, _)
-      return "const " .. args[1][1] .. " = props => { "
+      return "const " .. args[1][1] .. " = () => { "
 
       -- return string.format( [[ const
       -- ]] )

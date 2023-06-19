@@ -36,7 +36,7 @@ saga.setup {
   definition = {
     edit = "<C-c>o",
     vsplit = "<C-c>v",
-    split = "<C-c>i",
+    split = "<C-c>s",
     tabe = "<C-c>t",
     quit = "q",
   }
@@ -51,3 +51,4 @@ vim.keymap.set('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
 vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
 vim.keymap.set('n', 'go', '<Cmd>Lspsaga outline<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
+vim.keymap.set('n', 'ga', '<Cmd>Lspsaga code_action<CR>', opts)
