@@ -25,7 +25,7 @@ saga.setup {
     keys = {
       jump_to = 'p',
       expand_or_jump = 'o',
-      vsplit = 's',
+      vsplit = 'v',
       split = 'i',
       tabe = 't',
       tabnew = 'r',

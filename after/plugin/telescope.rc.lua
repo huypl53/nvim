@@ -17,6 +17,7 @@ telescope.setup {
         ["q"] = actions.close
       },
     },
+    file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", "build", "dist" }
   },
   extensions = {
     file_browser = {
@@ -41,7 +42,8 @@ telescope.setup {
     live_grep_args = {
       auto_quoting = true, -- enable/disable auto-quoting
       -- define mappings, e.g.
-      mappings = { -- extend mappings
+      mappings = {
+        -- extend mappings
         i = {
           ["<C-k>"] = lga_actions.quote_prompt(),
           ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
