@@ -14,7 +14,9 @@ telescope.setup {
   defaults = {
     mappings = {
       n = {
-        ["q"] = actions.close
+        ["q"] = actions.close,
+        ["<C-s>"] = actions.file_split,
+        ["<C-v>"] = actions.file_vsplit
       },
     },
     file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", "build", "dist" }
