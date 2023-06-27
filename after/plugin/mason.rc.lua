@@ -16,6 +16,7 @@ mason.setup({
     "flow",
     "tsserver",
     "pyright",
+    "prisma-language-server"
   }
 })
 
