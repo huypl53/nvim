@@ -45,3 +45,6 @@ keymap.set('n', 'sb', ':windo set scb!<CR>')
 -- Fold method
 keymap.set('n', 'sgm', ':set fdm=manual<CR>')
 keymap.set('n', 'sgi', ':set fdm=indent<CR>')
+
+-- yank current file path to clipboard
+keymap.set('n', 'yp', ':let @+=substitute(expand("%"), getcwd(), "", "g")<CR>')
