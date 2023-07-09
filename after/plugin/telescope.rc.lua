@@ -18,6 +18,11 @@ telescope.setup {
         ["<C-s>"] = actions.file_split,
         ["<C-v>"] = actions.file_vsplit
       },
+      i = {
+        ["<C-s>"] = actions.file_split,
+        ["<C-v>"] = actions.file_vsplit
+      },
+
     },
     file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", "build", "dist" }
   },
