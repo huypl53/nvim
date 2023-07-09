@@ -35,9 +35,37 @@ null_ls.setup {
 }
 
 vim.api.nvim_create_user_command(
-  'DisableLspFormatting',
+  'DisableFormatting',
   function()
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
   end,
   { nargs = 0 }
 )
+
+vim.api.nvim_create_user_command(
+  'EnableFormatting',
+  function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
+  end,
+  { nargs = 0 }
+
+)
+
+vim.api.nvim_create_user_command(
+  'FormatBuf',
+  function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    lsp_formatting(bufnr)
+  end,
+  { nargs = 0 }
+)
+
+vim.keymap.set('n', '<M-S-f>', '<Cmd>FormatBuf<CR>')
