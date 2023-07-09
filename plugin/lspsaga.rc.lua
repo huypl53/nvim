@@ -26,7 +26,7 @@ saga.setup {
       jump_to = 'p',
       expand_or_jump = 'o',
       vsplit = 'v',
-      split = 'i',
+      split = 's',
       tabe = 't',
       tabnew = 'r',
       quit = { 'q', '<ESC>' },
