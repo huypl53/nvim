@@ -2,9 +2,9 @@ local status, saga = pcall(require, "lspsaga")
 if (not status) then return end
 
 saga.setup {
-  server_filetype_map = {
-    typescript = 'typescript'
-  },
+  -- server_filetype_map = {
+  --   typescript = 'typescript'
+  -- },
   code_action_icon = "",
   symbol_in_winbar = {
     in_custom = false,
@@ -20,17 +20,17 @@ saga.setup {
   },
   finder = {
     max_height = 0.5,
-    min_width = 30,
-    force_max_height = false,
+    -- min_width = 30,
+    -- force_max_height = false,
     keys = {
-      jump_to = 'p',
-      expand_or_jump = 'o',
-      vsplit = 'v',
-      split = 's',
-      tabe = 't',
-      tabnew = 'r',
-      quit = { 'q', '<ESC>' },
-      close_in_preview = '<ESC>',
+      shuttle        = 'p',
+      toggle_or_open = 'o',
+      vsplit         = 'v',
+      split          = 's',
+      tabe           = 't',
+      tabnew         = 'r',
+      quit           = { 'q', '<ESC>' },
+      close          = '<ESC>',
     },
   },
   definition = {
@@ -46,7 +46,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
 vim.keymap.set('n', '<C-k>', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
 vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
-vim.keymap.set('n', 'gd', '<Cmd>Lspsaga lsp_finder<CR>', opts)
+vim.keymap.set('n', 'gd', '<Cmd>Lspsaga finder <CR>', opts)
 vim.keymap.set('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
 vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
 vim.keymap.set('n', 'go', '<Cmd>Lspsaga outline<CR>', opts)
