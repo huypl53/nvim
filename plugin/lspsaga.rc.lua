@@ -6,6 +6,9 @@ saga.setup {
   --   typescript = 'typescript'
   -- },
   code_action_icon = "",
+  ui = {
+    code_action = "",
+  },
   symbol_in_winbar = {
     in_custom = false,
     enable = true,
