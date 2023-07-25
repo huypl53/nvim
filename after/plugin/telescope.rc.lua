@@ -31,6 +31,7 @@ telescope.setup {
       theme = "dropdown",
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
+      select_buffer = true,
       mappings = {
         -- your custom insert mode mappings
         ["i"] = {
