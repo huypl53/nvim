@@ -29,7 +29,7 @@ packer.startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use 'nvimdev/lspsaga.nvim' -- LSP UIs
   use 'saadparwaiz1/cmp_luasnip'
   use({ 'L3MON4D3/LuaSnip', run = "make install_jsregexp" })
   use {

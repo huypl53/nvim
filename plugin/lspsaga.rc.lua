@@ -29,7 +29,7 @@ saga.setup {
       shuttle        = 'p',
       toggle_or_open = 'o',
       vsplit         = 'v',
-      split          = 's',
+      split          = 'i',
       tabe           = 't',
       tabnew         = 'r',
       quit           = { 'q', '<ESC>' },
@@ -39,7 +39,7 @@ saga.setup {
   definition = {
     edit = "<C-c>o",
     vsplit = "<C-c>v",
-    split = "<C-c>s",
+    split = "<C-c>i",
     tabe = "<C-c>t",
     quit = "q",
   }
