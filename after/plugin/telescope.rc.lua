@@ -16,10 +16,10 @@ telescope.setup {
       n = {
         ["q"] = actions.close,
         ["<C-s>"] = actions.file_split,
-        ["<C-v>"] = actions.file_vsplit
+        ["<C-i>"] = actions.file_vsplit
       },
       i = {
-        ["<C-s>"] = actions.file_split,
+        ["<C-i>"] = actions.file_split,
         ["<C-v>"] = actions.file_vsplit
       },
 

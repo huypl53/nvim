@@ -46,7 +46,10 @@ packer.startup(function(use)
       require('nvim-treesitter.install').prefer_git = false
     end,
   }
-  use 'folke/todo-comments.nvim'
+  use { 
+    'folke/todo-comments.nvim',
+    dependencies = { "nvim-lua/plenary.nvim" }
+  }
   use 'kevinhwang91/nvim-bqf'        -- Friendly quickfix
   use 'kyazdani42/nvim-web-devicons' -- File icons
   use 'lukas-reineke/indent-blankline.nvim'
