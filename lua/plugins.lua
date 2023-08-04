@@ -95,4 +95,9 @@ packer.startup(function(use)
       require("tailwindcss-colors").setup()
     end
   }
+
+  use {
+    'ckipp01/nvim-jenkinsfile-linter', 
+    requires = { "nvim-lua/plenary.nvim" } 
+  }
 end)

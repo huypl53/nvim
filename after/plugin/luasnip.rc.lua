@@ -7,27 +7,32 @@ local f = ls.function_node
 ls.setup({})
 ls.add_snippets("javascript", {
   s("rcc", {
-    t({ "import React from 'react';" }),
+    t({ "import React from 'react'" }),
     t({ "", "", "" }),
     f(function(args, _, _)
       return "const " .. args[1][1] .. " = () => { "
 
       -- return string.format( [[ const
       -- ]] )
-
     end, { 1 }),
     t({ "", "\treturn ", }),
     f(function(args, _, _)
-      return "<div>" .. args[1][1] .. "</div>;"
+      return "<div>" .. args[1][1] .. "</div>"
     end, { 1 }),
     t({ "", "}", "", "" }),
-    t "export default ", i(1), t ';', i(0)
+    t "export default ", i(1), t '', i(0)
   })
 })
 
 ls.add_snippets("javascript", {
-  s("clg", {
-    t("console.log({"), i(1), t("});"), i(0)
+  s("clo", {
+    t("console.log({"), i(1), t("})"), i(0)
+  })
+})
+
+ls.add_snippets("javascript", {
+  s("clo", {
+    t("console.log("), i(1), t(")"), i(0)
   })
 })
 
