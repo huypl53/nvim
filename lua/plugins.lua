@@ -46,7 +46,20 @@ packer.startup(function(use)
       require('nvim-treesitter.install').prefer_git = false
     end,
   }
-  use { 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons'
+    }
+  }
+  use {
+    'antosha417/nvim-lsp-file-operations',
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-tree.lua",
+    }
+  }
+  use {
     'folke/todo-comments.nvim',
     dependencies = { "nvim-lua/plenary.nvim" }
   }
@@ -97,7 +110,7 @@ packer.startup(function(use)
   }
 
   use {
-    'ckipp01/nvim-jenkinsfile-linter', 
-    requires = { "nvim-lua/plenary.nvim" } 
+    'ckipp01/nvim-jenkinsfile-linter',
+    requires = { "nvim-lua/plenary.nvim" }
   }
 end)
