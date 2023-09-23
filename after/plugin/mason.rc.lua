@@ -16,7 +16,8 @@ mason.setup({
     "flow",
     "tsserver",
     "pyright",
-    "prisma-language-server"
+    "prisma-language-server",
+    "gopls"
   }
 })
 
