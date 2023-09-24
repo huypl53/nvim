@@ -149,6 +149,9 @@ nvim_lsp.prismals.setup {
 nvim_lsp.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  cmd = {"gopls"},
+  filetypes = {"go", "gomod", "gowork", "gotmpl"},
+  root_dir = nvim_lsp.util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
     gopls = {
       analyses = {
