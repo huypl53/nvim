@@ -104,6 +104,7 @@ nvimtree.setup({
     end
 
     vim.cmd [[  hi clear NvimTreeNormal  ]]
+    vim.cmd [[  hi clear NvimTreeNormalNC  ]]
   end
 })
 
