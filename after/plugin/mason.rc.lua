@@ -10,6 +10,7 @@ mason.setup({
     "yamlls",
     "astro",
     "cssmodules_ls",
+    "cssls",
     "tailwindcss",
     "lua_ls",
     "html",
