@@ -39,7 +39,6 @@ nvimtree.setup({
       ["<C-v>"] = { api.node.open.vertical, "Open: Vertical Split" },
       ["<C-x>"] = { api.node.open.horizontal, "Open: Horizontal Split" },
       ["<BS>"] = { api.node.navigate.parent_close, "Close Directory" },
-      ["<CR>"] = { api.node.open.edit, "Open" },
       ["<Tab>"] = { api.node.open.preview, "Open Preview" },
       [">"] = { api.node.navigate.sibling.next, "Next Sibling" },
       ["<"] = { api.node.navigate.sibling.prev, "Previous Sibling" },
@@ -67,7 +66,6 @@ nvimtree.setup({
       ["J"] = { api.node.navigate.sibling.last, "Last Sibling" },
       ["K"] = { api.node.navigate.sibling.first, "First Sibling" },
       ["m"] = { api.marks.toggle, "Toggle Bookmark" },
-      ["o"] = { api.node.open.edit, "Open" },
       ["O"] = { api.node.open.no_window_picker, "Open: No Window Picker" },
       ["p"] = { api.fs.paste, "Paste" },
       ["P"] = { api.node.navigate.parent, "Parent Directory" },
@@ -91,7 +89,7 @@ nvimtree.setup({
       ["o"] = { api.node.open.edit, "Open" },
       ["h"] = { api.node.navigate.parent_close, "Close Directory" },
       ["v"] = { api.node.open.vertical, "Open: Vertical Split" },
-      ["C"] = { api.tree.change_root_to_node, "CD" },
+      -- ["C"] = { api.tree.change_root_to_node, "CD" },
     }
 
     for keys, mapping in pairs(mappings) do
@@ -104,5 +102,6 @@ nvimtree.setup({
 })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>o', '<cmd>NvimTreeToggle<CR>', opts)
+vim.keymap.set('n', '<leader>o', '<cmd>NvimTreeOpen<CR>', opts)
+vim.keymap.set('n', '<leader>c', '<cmd>NvimTreeClose<CR>', opts)
 vim.keymap.set('n', '<leader>p', '<cmd>NvimTreeFindFile<CR>', opts)
