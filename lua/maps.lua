@@ -3,7 +3,8 @@ local keymap = vim.keymap
 vim.g.mapleader = ';'
 keymap.set('i', 'kj', '<Esc>')
 keymap.set('i', 'jk', '<Esc>')
-keymap.set('i', '<C-l>', '<Esc>A')
+keymap.set('i', '<C-l>', '<Esc>Ea')
+keymap.set('i', '<C-h>', '<Esc>Bi')
 
 keymap.set('n', 'x', '"_x')
 

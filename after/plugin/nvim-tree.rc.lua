@@ -37,7 +37,7 @@ nvimtree.setup({
       ["<C-r>"] = { api.fs.rename_sub, "Rename: Omit Filename" },
       ["<C-t>"] = { api.node.open.tab, "Open: New Tab" },
       ["<C-v>"] = { api.node.open.vertical, "Open: Vertical Split" },
-      ["<C-x>"] = { api.node.open.horizontal, "Open: Horizontal Split" },
+      ["<C-i>"] = { api.node.open.horizontal, "Open: Horizontal Split" },
       ["<BS>"] = { api.node.navigate.parent_close, "Close Directory" },
       ["<Tab>"] = { api.node.open.preview, "Open Preview" },
       [">"] = { api.node.navigate.sibling.next, "Next Sibling" },
@@ -88,7 +88,6 @@ nvimtree.setup({
       ["<CR>"] = { api.node.open.edit, "Open" },
       ["o"] = { api.node.open.edit, "Open" },
       ["h"] = { api.node.navigate.parent_close, "Close Directory" },
-      ["v"] = { api.node.open.vertical, "Open: Vertical Split" },
       -- ["C"] = { api.tree.change_root_to_node, "CD" },
     }
 
