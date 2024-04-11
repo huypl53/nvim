@@ -18,7 +18,8 @@ mason.setup({
     "tsserver",
     "pyright",
     "prisma-language-server",
-    "gopls"
+    "gopls",
+    "emmet-language-server"
   }
 })
 
