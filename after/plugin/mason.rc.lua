@@ -19,7 +19,9 @@ mason.setup({
     "pyright",
     "prisma-language-server",
     "gopls",
-    "emmet-language-server"
+    "emmet-language-server",
+    "black",
+    "bash-language-server"
   }
 })
 
