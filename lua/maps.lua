@@ -1,5 +1,5 @@
 local keymap = vim.keymap
-
+vim.g.maplocalleader = "\\"
 vim.g.mapleader = ';'
 keymap.set('i', 'kj', '<Esc>')
 keymap.set('i', 'jk', '<Esc>')
