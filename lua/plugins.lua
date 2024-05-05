@@ -113,4 +113,7 @@ packer.startup(function(use)
     'ckipp01/nvim-jenkinsfile-linter',
     requires = { "nvim-lua/plenary.nvim" }
   }
+
+  use 'mfussenegger/nvim-dap'
+  use 'mfussenegger/nvim-dap-python'
 end)
