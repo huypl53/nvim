@@ -17,6 +17,8 @@ mason.setup({
     "flow",
     "tsserver",
     "pyright",
+    "black",
+    "isort",
     "prisma-language-server",
     "gopls",
     "emmet-language-server",
