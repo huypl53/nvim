@@ -110,4 +110,8 @@ lazy.setup({
 	"mfussenegger/nvim-dap",
 	"mfussenegger/nvim-dap-python",
 	"stevearc/conform.nvim",
+	{
+		"ckipp01/nvim-jenkinsfile-linter",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 })
