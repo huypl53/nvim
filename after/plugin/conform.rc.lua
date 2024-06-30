@@ -13,6 +13,7 @@ conform.setup({
 		javascriptreact = { { "deno_fmt", "prettierd", "prettier" } },
 		typescript = { { "deno_fmt", "prettierd", "prettier" } },
 		typescriptreact = { { "deno_fmt", "prettierd", "prettier" } },
+		json = { "deno_fmt" },
 	},
 	format_on_save = function(bufnr)
 		-- Disable with a global or buffer-local variable
