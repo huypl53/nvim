@@ -14,6 +14,7 @@ conform.setup({
 		typescript = { { "deno_fmt", "prettierd", "prettier" } },
 		typescriptreact = { { "deno_fmt", "prettierd", "prettier" } },
 		json = { "deno_fmt" },
+		sql = { "sql_formatter" },
 	},
 	format_on_save = function(bufnr)
 		-- Disable with a global or buffer-local variable
