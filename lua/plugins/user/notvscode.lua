@@ -72,17 +72,16 @@ return {
 				vim.fn["mkdp#util#install"]()
 			end,
 		},
-		"rhysd/accelerated-jk",
 		"akinsho/nvim-bufferline.lua",
 		"numToStr/Comment.nvim",
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		"chentoast/marks.nvim",
+		{
+			"chentoast/marks.nvim",
+			event = "VeryLazy",
+			opts = {},
+		},
 		"lewis6991/gitsigns.nvim",
 		"dinhhuy258/git.nvim", -- For git blame & browse
-		{
-			"phaazon/hop.nvim",
-			branch = "v2", -- optional but strongly recommended
-		},
 
 		{ -- tailwindcss-colors
 			"themaxmarchuk/tailwindcss-colors.nvim",
@@ -116,3 +115,4 @@ return {
 		},
 	},
 }
+
