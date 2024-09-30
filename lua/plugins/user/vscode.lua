@@ -1,3 +1,34 @@
+local status, vscode = pcall(require, "vscode")
+if not status then
+	return
+end
+
+local keymap = vim.keymap
+
+keymap.set("n", "gd", function()
+	vscode.call("editor.action.revealDefinition")
+end)
+
+keymap.set("n", "gp", function()
+	vscode.call("editor.action.peekDefinition")
+end)
+
+keymap.set("n", "gj", function()
+	vscode.call("workbench.action.navigateDown")
+end)
+
+keymap.set("n", "gk", function()
+	vscode.call("workbench.action.navigateUp")
+end)
+
+keymap.set("n", "gh", function()
+	vscode.call("workbench.action.navigateLeft")
+end)
+
+keymap.set("n", "gl", function()
+	vscode.call("workbench.action.navigateRight")
+end)
+
 return {
 	-- by LazyNvim
 	-- "dial.nvim",
