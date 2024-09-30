@@ -73,8 +73,6 @@ return {
 			end,
 		},
 		"akinsho/nvim-bufferline.lua",
-		"numToStr/Comment.nvim",
-		"JoosepAlviste/nvim-ts-context-commentstring",
 		{
 			"chentoast/marks.nvim",
 			event = "VeryLazy",

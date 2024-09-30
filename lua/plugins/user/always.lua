@@ -2,8 +2,10 @@ return {
 
 	"rhysd/accelerated-jk",
 	"echasnovski/mini.surround",
+	"numToStr/Comment.nvim",
+	"JoosepAlviste/nvim-ts-context-commentstring",
 	{
-		"phaazon/hop.nvim",
-		branch = "v2", -- optional but strongly recommended
+		"smoka7/hop.nvim",
+		-- branch = "v2", -- optional but strongly recommended
 	},
 }
