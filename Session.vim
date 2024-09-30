@@ -13,33 +13,27 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +2 init.lua
-badd +245 plugin/lspconfig.lua
-badd +2 plugin/lspsaga.rc.lua
-badd +3 plugin/null-ls.rc.odd.lua
-badd +48 lua/base.lua
-badd +7 lua/highlights.lua
-badd +52 lua/maps.lua
-badd +35 ~/AppData/Local/nvim/lua/plugins.lua__
-badd +12 lua/plugins/init.lua
-badd +1 lua/plugins/user/always.lua
+badd +1 lua/plugins/user/notvscode.lua
+badd +9 lua/plugins/user/always.lua
+badd +1 after/plugin/mason.rc.lua
+badd +1 plugin/lspconfig.lua
+badd +5 lua/plugins/user/vscode.lua
+badd +1 after/plugin/mini-surround.rc.lua
 argglobal
 %argdel
-edit init.lua
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit lua/plugins/user/always.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
-wincmd w
 wincmd _ | wincmd |
 split
 1wincmd k
 wincmd w
-wincmd _ | wincmd |
-vsplit
-1wincmd h
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -50,15 +44,13 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 42 + 63) / 127)
-exe '2resize ' . ((&lines * 23 + 24) / 48)
-exe 'vert 2resize ' . ((&columns * 84 + 63) / 127)
-exe '3resize ' . ((&lines * 22 + 24) / 48)
-exe 'vert 3resize ' . ((&columns * 42 + 63) / 127)
-exe '4resize ' . ((&lines * 22 + 24) / 48)
-exe 'vert 4resize ' . ((&columns * 41 + 63) / 127)
+exe '1resize ' . ((&lines * 52 + 53) / 106)
+exe 'vert 1resize ' . ((&columns * 63 + 63) / 127)
+exe '2resize ' . ((&lines * 50 + 53) / 106)
+exe 'vert 2resize ' . ((&columns * 63 + 63) / 127)
+exe 'vert 3resize ' . ((&columns * 63 + 63) / 127)
 argglobal
-balt plugin/lspconfig.lua
+balt after/plugin/mason.rc.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -69,63 +61,17 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 37 - ((36 * winheight(0) + 22) / 45)
+let s:l = 9 - ((8 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 37
+keepjumps 9
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("lua/plugins/init.lua", ":p")) | buffer lua/plugins/init.lua | else | edit lua/plugins/init.lua | endif
+if bufexists(fnamemodify("lua/plugins/user/vscode.lua", ":p")) | buffer lua/plugins/user/vscode.lua | else | edit lua/plugins/user/vscode.lua | endif
 if &buftype ==# 'terminal'
-  silent file lua/plugins/init.lua
-endif
-balt ~/AppData/Local/nvim/lua/plugins.lua__
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 14 - ((13 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 14
-normal! 02|
-wincmd w
-argglobal
-if bufexists(fnamemodify("lua/plugins/user/always.lua", ":p")) | buffer lua/plugins/user/always.lua | else | edit lua/plugins/user/always.lua | endif
-if &buftype ==# 'terminal'
-  silent file lua/plugins/user/always.lua
-endif
-balt lua/plugins/init.lua
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 10) / 21)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 2
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("lua/plugins/init.lua", ":p")) | buffer lua/plugins/init.lua | else | edit lua/plugins/init.lua | endif
-if &buftype ==# 'terminal'
-  silent file lua/plugins/init.lua
+  silent file lua/plugins/user/vscode.lua
 endif
 balt lua/plugins/user/always.lua
 setlocal fdm=manual
@@ -138,21 +84,61 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 9 - ((8 * winheight(0) + 10) / 21)
+let s:l = 5 - ((4 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 9
-normal! 012|
+keepjumps 5
+normal! 0
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 42 + 63) / 127)
-exe '2resize ' . ((&lines * 23 + 24) / 48)
-exe 'vert 2resize ' . ((&columns * 84 + 63) / 127)
-exe '3resize ' . ((&lines * 22 + 24) / 48)
-exe 'vert 3resize ' . ((&columns * 42 + 63) / 127)
-exe '4resize ' . ((&lines * 22 + 24) / 48)
-exe 'vert 4resize ' . ((&columns * 41 + 63) / 127)
+argglobal
+if bufexists(fnamemodify("lua/plugins/user/notvscode.lua", ":p")) | buffer lua/plugins/user/notvscode.lua | else | edit lua/plugins/user/notvscode.lua | endif
+if &buftype ==# 'terminal'
+  silent file lua/plugins/user/notvscode.lua
+endif
+balt lua/plugins/user/always.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 31 - ((30 * winheight(0) + 51) / 102)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 31
+normal! 066|
+wincmd w
+exe '1resize ' . ((&lines * 52 + 53) / 106)
+exe 'vert 1resize ' . ((&columns * 63 + 63) / 127)
+exe '2resize ' . ((&lines * 50 + 53) / 106)
+exe 'vert 2resize ' . ((&columns * 63 + 63) / 127)
+exe 'vert 3resize ' . ((&columns * 63 + 63) / 127)
+tabnext
+edit after/plugin/mini-surround.rc.lua
+argglobal
+balt lua/plugins/user/vscode.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 41 - ((40 * winheight(0) + 51) / 102)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 41
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -160,8 +146,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

@@ -19,7 +19,7 @@ mason.setup({
 		"lua_ls",
 		"html",
 		"flow",
-		"tsserver",
+		"ts_ls",
 		"pyright",
 		"prisma-language-server",
 		"gopls",
