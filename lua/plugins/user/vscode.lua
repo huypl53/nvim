@@ -29,6 +29,17 @@ keymap.set("n", "gl", function()
 	vscode.call("workbench.action.navigateRight")
 end)
 
+keymap.set("n", "sz", function()
+	vscode.call("workbench.action.toggleMaximizeEditorGroup")
+end)
+
+keymap.set("n", "sv", function()
+	vscode.call("workbench.action.splitEditorRight")
+end)
+keymap.set("n", "ss", function()
+	vscode.call("workbench.action.splitEditorDown")
+end)
+
 return {
 	-- by LazyNvim
 	-- "dial.nvim",

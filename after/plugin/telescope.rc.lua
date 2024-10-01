@@ -325,7 +325,7 @@ vim.keymap.set("n", ";s", function()
 		respect_gitignore = true,
 		hidden = true,
 		grouped = true,
-		previewer = false,
+		previewer = true,
 		initial_mode = "normal",
 		layout_config = { height = 40 },
 	})
