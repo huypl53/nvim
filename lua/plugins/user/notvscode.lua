@@ -38,6 +38,7 @@ return {
 			end,
 		},
 		"nvim-tree/nvim-tree.lua",
+		"numToStr/Comment.nvim",
 		{
 			"antosha417/nvim-lsp-file-operations",
 			dependencies = {

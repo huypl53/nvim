@@ -2,7 +2,6 @@ return {
 
 	"rhysd/accelerated-jk",
 	"echasnovski/mini.surround",
-	"numToStr/Comment.nvim",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	{
 		"smoka7/hop.nvim",
