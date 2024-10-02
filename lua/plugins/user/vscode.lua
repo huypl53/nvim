@@ -13,19 +13,19 @@ keymap.set("n", "gp", function()
 	vscode.call("editor.action.peekDefinition")
 end)
 
-keymap.set("n", "gj", function()
+keymap.set("n", "sj", function()
 	vscode.call("workbench.action.navigateDown")
 end)
 
-keymap.set("n", "gk", function()
+keymap.set("n", "sk", function()
 	vscode.call("workbench.action.navigateUp")
 end)
 
-keymap.set("n", "gh", function()
+keymap.set("n", "sh", function()
 	vscode.call("workbench.action.navigateLeft")
 end)
 
-keymap.set("n", "gl", function()
+keymap.set("n", "sl", function()
 	vscode.call("workbench.action.navigateRight")
 end)
 
