@@ -36,8 +36,13 @@ end)
 keymap.set("n", "sv", function()
 	vscode.call("workbench.action.splitEditorRight")
 end)
+
 keymap.set("n", "ss", function()
 	vscode.call("workbench.action.splitEditorDown")
+end)
+
+keymap.set("n", "gr", function()
+	vscode.call("editor.action.rename")
 end)
 
 return {
