@@ -20,17 +20,17 @@ miniSurround.setup({
 		highlight = "sh", -- Highlight surrounding
 		replace = "sr", -- Replace surrounding
 		update_n_lines = "sn", -- Update `n_lines`
-		suffix_last = "h", -- Suffix to search with "prev" method
-		suffix_next = "l", -- Suffix to search with "next" method
+		-- suffix_last = "h", -- Suffix to search with "prev" method
+		-- suffix_next = "l", -- Suffix to search with "next" method
 	},
 
 	-- Number of lines within which surrounding is searched
-	n_lines = 20,
+	-- n_lines = 20,
 
 	-- Whether to respect selection type:
 	-- - Place surroundings on separate lines in linewise mode.
 	-- - Place surroundings on each line in blockwise mode.
-	respect_selection_type = false,
+	-- respect_selection_type = false,
 
 	-- How to search for surrounding (first inside current line, then inside
 	-- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',
@@ -39,5 +39,5 @@ miniSurround.setup({
 	search_method = "cover",
 
 	-- Whether to disable showing non-error feedback
-	silent = false,
+	-- silent = false,
 })

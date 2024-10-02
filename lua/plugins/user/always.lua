@@ -1,7 +1,8 @@
 return {
 
 	"rhysd/accelerated-jk",
-	"echasnovski/mini.surround",
+	"tpope/vim-surround",
+	-- "echasnovski/mini.surround",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	{
 		"smoka7/hop.nvim",

@@ -66,7 +66,6 @@ return {
 		"norcalli/nvim-colorizer.lua",
 		"folke/zen-mode.nvim",
 		"folke/twilight.nvim",
-		-- "tpope/vim-surround",
 		"liuchengxu/vista.vim",
 		{
 			"iamcco/markdown-preview.nvim",
