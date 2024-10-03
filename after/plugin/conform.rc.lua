@@ -9,10 +9,10 @@ conform.setup({
 		-- Conform will run multiple formatters sequentially
 		python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
-		javascript = { "deno_fmt", "prettierd", "prettier" },
-		javascriptreact = { "deno_fmt", "prettierd", "prettier" },
-		typescript = { "deno_fmt", "prettierd", "prettier" },
-		typescriptreact = { "deno_fmt", "prettierd", "prettier" },
+		javascript = { "deno_fmt", "prettierd" },
+		javascriptreact = { "deno_fmt", "prettierd" },
+		typescript = { "deno_fmt", "prettierd" },
+		typescriptreact = { "deno_fmt", "prettierd" },
 		json = { "deno_fmt" },
 		sql = { "sql_formatter" },
 	},
