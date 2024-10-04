@@ -205,7 +205,7 @@ telescope.setup({
 
 				local height, width = vim.o.lines, vim.o.columns
 				local box_kind = "horizontal"
-				if width < 100 then
+				if width < 200 then
 					box_kind = "vertical"
 					if height < 40 then
 						box_kind = "minimal"
