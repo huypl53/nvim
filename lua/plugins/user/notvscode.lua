@@ -17,10 +17,10 @@ return {
 		"hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
 		"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
 		"hrsh7th/nvim-cmp", -- Completion
-		"neovim/nvim-lspconfig", -- LSP
 		-- "jose-elias-alvarez/null-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig", -- LSP
 		"nvimdev/lspsaga.nvim", -- LSP UIs
 		"saadparwaiz1/cmp_luasnip",
 		{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
