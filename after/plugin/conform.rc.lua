@@ -9,21 +9,26 @@ conform.setup({
 		-- Conform will run multiple formatters sequentially
 		python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
-		javascript = { "deno_fmt", "prettierd" },
-		javascriptreact = { "deno_fmt", "prettierd" },
-		typescript = { "deno_fmt", "prettierd" },
-		typescriptreact = { "deno_fmt", "prettierd" },
+		javascript = { "deno_fmt", "prettierd", "prettier" },
+		javascriptreact = { "deno_fmt", "prettierd", "prettier" },
+		typescript = { "deno_fmt", "prettierd", "prettier" },
+		typescriptreact = { "deno_fmt", "prettierd", "prettier" },
 		json = { "deno_fmt" },
 		sql = { "sql_formatter" },
 	},
-	format_on_save = function(bufnr)
+	-- format_on_save = function(bufnr)
+	format_after_save = function(bufnr)
 		-- Disable with a global or buffer-local variable
 		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 			return
 		end
-		return { timeout_ms = 500, lsp_format = "fallback" }
+		return { lsp_format = "fallback", async = true }
 	end,
 })
+
+conform.formatters.prettier = {
+	prepend_args = { "--prose-wrap", "always" },
+}
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
