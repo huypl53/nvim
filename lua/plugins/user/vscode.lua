@@ -45,6 +45,18 @@ keymap.set("n", "gr", function()
 	vscode.call("editor.action.rename")
 end)
 
+keymap.set("n", "m;", function()
+	vscode.call("bookmarks.toggle")
+end)
+
+keymap.set("n", "m]", function()
+	vscode.call("bookmarks.jumpToNext")
+end)
+
+keymap.set("n", "m[", function()
+	vscode.call("bookmarks.jumpToPrevious")
+end)
+
 return {
 	-- by LazyNvim
 	-- "dial.nvim",
