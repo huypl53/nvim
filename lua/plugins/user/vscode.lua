@@ -5,45 +5,23 @@ end
 
 local keymap = vim.keymap
 
-keymap.set("n", "gd", function()
-	vscode.call("editor.action.revealDefinition")
-end)
+local function vscode_bind(mode, keys, command, ...)
+	keymap.set(mode, keys, function()
+		vscode.call(command)
+	end)
+end
 
-keymap.set("n", "gp", function()
-	vscode.call("editor.action.peekDefinition")
-end)
-
-keymap.set("n", "sj", function()
-	vscode.call("workbench.action.navigateDown")
-end)
-
-keymap.set("n", "sk", function()
-	vscode.call("workbench.action.navigateUp")
-end)
-
-keymap.set("n", "sh", function()
-	vscode.call("workbench.action.navigateLeft")
-end)
-
-keymap.set("n", "sl", function()
-	vscode.call("workbench.action.navigateRight")
-end)
-
-keymap.set("n", "sz", function()
-	vscode.call("workbench.action.toggleMaximizeEditorGroup")
-end)
-
-keymap.set("n", "sv", function()
-	vscode.call("workbench.action.splitEditorRight")
-end)
-
-keymap.set("n", "ss", function()
-	vscode.call("workbench.action.splitEditorDown")
-end)
-
-keymap.set("n", "gr", function()
-	vscode.call("editor.action.rename")
-end)
+vscode_bind("n", "gd", "editor.action.revealDefinition")
+vscode_bind("n", "gp", "editor.action.peekDefinition")
+vscode_bind("n", "sj", "workbench.action.navigateDown")
+vscode_bind("n", "sk", "workbench.action.navigateUp")
+vscode_bind("n", "sh", "workbench.action.navigateLeft")
+vscode_bind("n", "sl", "workbench.action.navigateRight")
+vscode_bind("n", "sz", "workbench.action.toggleMaximizeEditorGroup")
+vscode_bind("n", "sv", "workbench.action.splitEditorRight")
+vscode_bind("n", "ss", "workbench.action.splitEditorDown")
+vscode_bind("n", "ga", "editor.action.quickFix")
+vscode_bind("n", "gr", "editor.action.rename")
 
 return {
 	-- by LazyNvim
