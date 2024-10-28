@@ -23,6 +23,18 @@ vscode_bind("n", "ss", "workbench.action.splitEditorDown")
 vscode_bind("n", "ga", "editor.action.quickFix")
 vscode_bind("n", "gr", "editor.action.rename")
 
+keymap.set("n", "m;", function()
+	vscode.call("bookmarks.toggle")
+end)
+
+keymap.set("n", "m]", function()
+	vscode.call("bookmarks.jumpToNext")
+end)
+
+keymap.set("n", "m[", function()
+	vscode.call("bookmarks.jumpToPrevious")
+end)
+
 return {
 	-- by LazyNvim
 	-- "dial.nvim",
