@@ -22,6 +22,7 @@ vscode_bind("n", "sv", "workbench.action.splitEditorRight")
 vscode_bind("n", "ss", "workbench.action.splitEditorDown")
 vscode_bind("n", "ga", "editor.action.quickFix")
 vscode_bind("n", "gr", "editor.action.rename")
+vscode_bind("n", "go", "editor.action.openLink")
 
 keymap.set("n", "m;", function()
 	vscode.call("bookmarks.toggle")
