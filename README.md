@@ -2,9 +2,10 @@
 
 ## Requirements
 
+- nodejs
+- clangd
+
 ```cmd
 winget install -e --id zig.zig
 winget install BurntSushi.ripgrep.MSVC
 ```
-
-- Install nodejs
