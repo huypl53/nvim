@@ -26,6 +26,8 @@ ts.setup({
     "python",
     "typescript",
     "javascript",
+    "markdown",
+    "markdown_inline"
   },
   auto_install = false,
 })
