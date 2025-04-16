@@ -12,16 +12,16 @@ return {
       end,
     },
     "nvim-lualine/lualine.nvim", -- Statusline
-    "nvim-lua/plenary.nvim",   -- Common utilities
-    "onsails/lspkind-nvim",    -- vscode-like pictograms
-    "hrsh7th/cmp-buffer",      -- nvim-cmp source for buffer words
-    "hrsh7th/cmp-nvim-lsp",    -- nvim-cmp source for neovim's built-in LSP
-    "hrsh7th/nvim-cmp",        -- Completion
+    "nvim-lua/plenary.nvim",     -- Common utilities
+    "onsails/lspkind-nvim",      -- vscode-like pictograms
+    "hrsh7th/cmp-buffer",        -- nvim-cmp source for buffer words
+    "hrsh7th/cmp-nvim-lsp",      -- nvim-cmp source for neovim's built-in LSP
+    "hrsh7th/nvim-cmp",          -- Completion
     -- "jose-elias-alvarez/null-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig", -- LSP
-    "nvimdev/lspsaga.nvim", -- LSP UIs
+    "nvimdev/lspsaga.nvim",  -- LSP UIs
     "saadparwaiz1/cmp_luasnip",
     { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
     {
@@ -50,7 +50,7 @@ return {
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
     },
-    "kevinhwang91/nvim-bqf",      -- Friendly quickfix
+    "kevinhwang91/nvim-bqf",        -- Friendly quickfix
     "kyazdani42/nvim-web-devicons", -- File icons
     "lukas-reineke/indent-blankline.nvim",
     {
@@ -93,7 +93,7 @@ return {
     "lewis6991/gitsigns.nvim",
     "dinhhuy258/git.nvim", -- For git blame & browse
 
-    {                    -- tailwindcss-colors
+    {                      -- tailwindcss-colors
       "themaxmarchuk/tailwindcss-colors.nvim",
       -- load only on require("tailwindcss-colors")
       -- module = "tailwindcss-colors",
