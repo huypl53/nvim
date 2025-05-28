@@ -23,6 +23,7 @@ vscode_bind("n", "ss", "workbench.action.splitEditorDown")
 vscode_bind("n", "ga", "editor.action.quickFix")
 vscode_bind("n", "gr", "editor.action.rename")
 vscode_bind("n", "go", "editor.action.openLink")
+vscode_bind("n", "gt", "editor.action.goToTypeDefinition")
 vscode_bind("n", "<S-l>", "workbench.action.nextEditorInGroup")
 vscode_bind("n", "<S-h>", "workbench.action.previousEditorInGroup")
 
