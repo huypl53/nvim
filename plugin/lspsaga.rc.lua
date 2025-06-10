@@ -42,6 +42,10 @@ saga.setup {
     split = "<C-c>i",
     tabe = "<C-c>t",
     quit = "q",
+  },
+  outline = {
+    auto_preview = false,
+    detail = false
   }
 }
 
