@@ -38,7 +38,7 @@ return {
       end,
     },
     "nvim-tree/nvim-tree.lua",
-    "numToStr/Comment.nvim",
+    "numToStr/Comment.nvim", -- Comment everything
     {
       "antosha417/nvim-lsp-file-operations",
       dependencies = {
@@ -61,12 +61,12 @@ return {
         { "nvim-telescope/telescope-file-browser.nvim" },
       },
     },
-    "windwp/nvim-autopairs",
-    "windwp/nvim-ts-autotag",
+    "windwp/nvim-autopairs",  -- Auto closing bracket
+    "windwp/nvim-ts-autotag", -- Use treesitter to autoclose and autorename html tag
     "norcalli/nvim-colorizer.lua",
-    "folke/zen-mode.nvim",
-    "folke/twilight.nvim",
-    "liuchengxu/vista.vim",
+    "folke/zen-mode.nvim",    -- Focus on one file
+    "folke/twilight.nvim",    -- Focus on code block
+    "liuchengxu/vista.vim",   -- Require: ctags. TODO: learn more
 
     -- {
     -- 	"Exafunction/codeium.nvim",
@@ -93,17 +93,6 @@ return {
     "lewis6991/gitsigns.nvim",
     "dinhhuy258/git.nvim", -- For git blame & browse
 
-    {                      -- tailwindcss-colors
-      "themaxmarchuk/tailwindcss-colors.nvim",
-      -- load only on require("tailwindcss-colors")
-      -- module = "tailwindcss-colors",
-      -- run the setup function after plugin is loaded
-      config = function()
-        -- pass config options here (or nothing to use defaults)
-        require("tailwindcss-colors").setup()
-      end,
-    },
-
     {
       "ckipp01/nvim-jenkinsfile-linter",
       dependencies = { "nvim-lua/plenary.nvim" },
@@ -111,17 +100,28 @@ return {
 
     "mfussenegger/nvim-dap",
     "mfussenegger/nvim-dap-python",
-    "stevearc/conform.nvim",
+    "stevearc/conform.nvim", -- Code formatter
     {
-      "ckipp01/nvim-jenkinsfile-linter",
-      dependencies = { "nvim-lua/plenary.nvim" },
-    },
-    {
-      "antosha417/nvim-lsp-file-operations",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-tree.lua",
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
       },
-    },
+      keys = {
+        {
+          "<leader>?",
+          function()
+            require("which-key").show({ global = false })
+          end,
+          desc = "Buffer Local Keymaps (which-key)",
+        },
+      },
+    }
   },
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = { 'kevinhwang91/promise-async' }
+  }
 }

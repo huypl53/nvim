@@ -6,9 +6,6 @@ saga.setup {
   --   typescript = 'typescript'
   -- },
   code_action_icon = "",
-  ui = {
-    code_action = "",
-  },
   symbol_in_winbar = {
     in_custom = false,
     enable = true,
@@ -46,7 +43,12 @@ saga.setup {
   outline = {
     auto_preview = false,
     detail = false
-  }
+  },
+  ui = {
+    -- Ensure icons are used in other UI elements
+    code_action = "💡",
+    diagnostic = "",
+  },
 }
 
 local opts = { noremap = true, silent = true }
