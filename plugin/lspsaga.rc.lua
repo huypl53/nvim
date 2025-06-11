@@ -49,6 +49,17 @@ saga.setup {
     code_action = "💡",
     diagnostic = "",
   },
+  diagnostic = {
+    show_code_action = true,
+    show_source = false,
+    jump_diagnostic = true,
+    diagnostic_only_current = false,
+    -- Ensure lspsaga handles floating windows
+    auto_preview = false, -- Show diagnostic window on hover
+    -- max_height = 10,
+    -- max_width = 80,
+    signs = false, -- Let Neovim handle signs (already configured)
+  },
 }
 
 local opts = { noremap = true, silent = true }

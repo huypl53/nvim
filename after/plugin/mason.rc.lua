@@ -98,13 +98,16 @@ protocol.CompletionItemKind = {
   "", -- TypeParameter
 }
 
--- Set up completion using nvim_cmp with LSP source
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- nvim_lsp.flow.setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- })
+local capabilities     = vim.lsp.protocol.make_client_capabilities()
+
+-- Set up completion using nvim_cmp with LSP source
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+for k, v in pairs(cmp_capabilities)
+do
+  capabilities[k] = v
+end
 
 nvim_lsp.ts_ls.setup({
   on_attach = on_attach,
@@ -177,6 +180,15 @@ nvim_lsp.astro.setup({
 nvim_lsp.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+      },
+    },
+  }
 })
 
 nvim_lsp.prismals.setup({
@@ -226,23 +238,29 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   severity_sort = true,
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "DiagnosticDefault" .. type })
-end
 
 vim.diagnostic.config({
-  signs = true,
+  signs = {
+    active = true,
+    priority = 100,
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+    }
+  },
   -- virtual_text = {
   --   prefix = "●",
   -- },
   virtual_text = true,
-  update_in_insert = true,
+  update_in_insert = false,
   serverity_sort = true,
   float = {
-    source = "always", -- Or "if_many"
+    source = "if_many", -- Or "if_many"
   },
+  severity_sort = true
+
 })
 
 nvim_lsp.emmet_language_server.setup({
