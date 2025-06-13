@@ -7,33 +7,12 @@ if not status2 then
   return
 end
 
-mason.setup({})
-
-masonlsp.setup({
-  ensure_installed = {
-    "clangd",
-    "dockerls",
-    "yamlls",
-    "astro",
-    "cssls",
-    "tailwindcss",
-    "lua_ls",
-    "html",
-    "ts_ls",
-    "pyright",
-    "prismals",
-    "gopls",
-    "bashls",
-    "cssmodules_ls",
-    "emmet_language_server",
-  },
-  automatic_installation = true,
-})
-
 local status3, nvim_lsp = pcall(require, "lspconfig")
 if not status3 then
   return
 end
+
+mason.setup({})
 
 local protocol = require("vim.lsp.protocol")
 
@@ -109,6 +88,44 @@ do
   capabilities[k] = v
 end
 
+masonlsp.setup({
+  ensure_installed = {
+    "clangd",
+    "dockerls",
+    "yamlls",
+    "astro",
+    "cssls",
+    "tailwindcss",
+    "lua_ls",
+    "html",
+    "ts_ls",
+    "pyright",
+    "prismals",
+    "gopls",
+    "bashls",
+    "cssmodules_ls",
+    "emmet_language_server",
+  },
+  automatic_installation = true,
+  handlers = {
+    pyright = function()
+      nvim_lsp.pyright.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+            },
+          },
+        }
+      })
+    end
+  }
+})
+
 nvim_lsp.ts_ls.setup({
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "jsx" },
@@ -175,20 +192,6 @@ nvim_lsp.cssls.setup({
 nvim_lsp.astro.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-})
-
-nvim_lsp.pyright.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        diagnosticMode = "workspace",
-      },
-    },
-  }
 })
 
 nvim_lsp.prismals.setup({

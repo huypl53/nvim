@@ -14,9 +14,9 @@ ts.setup({
   },
   ensure_installed = {
     "vim",
-    "tsx",
+    -- "tsx",
     "toml",
-    "php",
+    -- "php",
     "json",
     "yaml",
     "css",
@@ -29,7 +29,7 @@ ts.setup({
     "markdown",
     "markdown_inline"
   },
-  auto_install = false,
+  auto_install = true,
 })
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()

@@ -66,7 +66,12 @@ return {
     "norcalli/nvim-colorizer.lua",
     "folke/zen-mode.nvim",    -- Focus on one file
     "folke/twilight.nvim",    -- Focus on code block
-    "liuchengxu/vista.vim",   -- Require: ctags. TODO: learn more
+    {
+      "liuchengxu/vista.vim", -- Require: ctags. TODO: learn more
+      config = function()
+        vim.keymap.set('n', 'go', '<Cmd>Vista!!<CR>', { noremap = true, silent = true })
+      end
+    },
 
     -- {
     -- 	"Exafunction/codeium.nvim",
@@ -121,7 +126,21 @@ return {
     }
   },
   {
-    'kevinhwang91/nvim-ufo',
+    'kevinhwang91/nvim-ufo', -- Folding like boss
     dependencies = { 'kevinhwang91/promise-async' }
-  }
+  },
+  {
+    "alexpasmantier/pymple.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      -- optional (nicer ui)
+      "stevearc/dressing.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    build = ":PympleBuild",
+    config = function()
+      require("pymple").setup()
+    end,
+  },
 }
