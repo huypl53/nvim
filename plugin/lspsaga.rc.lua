@@ -8,12 +8,9 @@ saga.setup {
   code_action_icon = "",
   symbol_in_winbar = {
     enable = true,
-    -- in_custom = false,
     hide_keyword = false,
     separator = ' ',
     show_file = true,
-    file_formatter = "",
-    click_support = false,
   },
   finder = {
     max_height = 0.5,
@@ -69,6 +66,6 @@ vim.keymap.set('n', 'gf', '<Cmd>Lspsaga finder <CR>', opts)
 vim.keymap.set('i', 'gs', '<Cmd>Lspsaga signature_help<CR>', opts)
 vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
 vim.keymap.set('n', 'gP', '<Cmd>Lspsaga peek_type_definition<CR>', opts)
-vim.keymap.set('n', 'go', '<Cmd>Lspsaga outline<CR>', opts)
+-- vim.keymap.set('n', 'go', '<Cmd>Lspsaga outline<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 vim.keymap.set('n', 'ga', '<Cmd>Lspsaga code_action<CR>', opts)
