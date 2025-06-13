@@ -66,12 +66,13 @@ return {
     "norcalli/nvim-colorizer.lua",
     "folke/zen-mode.nvim",    -- Focus on one file
     "folke/twilight.nvim",    -- Focus on code block
-    {
-      "liuchengxu/vista.vim", -- Require: ctags. TODO: learn more
-      config = function()
-        vim.keymap.set('n', 'go', '<Cmd>Vista!!<CR>', { noremap = true, silent = true })
-      end
-    },
+    -- {
+    --   "liuchengxu/vista.vim", -- Require: ctags. TODO: learn more
+    --   config = function()
+    --     vim.keymap.set('n', 'go', '<Cmd>Vista!!<CR>', { noremap = true, silent = true })
+    --     vim.g.vista_stay_on_open=0
+    --   end
+    -- },
 
     -- {
     -- 	"Exafunction/codeium.nvim",
