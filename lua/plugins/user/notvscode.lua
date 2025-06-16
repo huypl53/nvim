@@ -45,6 +45,7 @@ return {
       require("nvim-treesitter.install").prefer_git = false
     end,
   },
+  'nvim-treesitter/nvim-treesitter-context',
   "nvim-tree/nvim-tree.lua",
   "numToStr/Comment.nvim", -- Comment everything
   {
