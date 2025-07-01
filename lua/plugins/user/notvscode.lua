@@ -52,7 +52,7 @@ return {
       require("nvim-treesitter.install").prefer_git = false
     end,
   },
-  'nvim-treesitter/nvim-treesitter-context',
+  'nvim-treesitter/nvim-treesitter-context', -- Sticky scroll keeps higher indent context
   "nvim-tree/nvim-tree.lua",
   "numToStr/Comment.nvim", -- Comment everything
   {
@@ -81,17 +81,6 @@ return {
   "norcalli/nvim-colorizer.lua",
   "folke/zen-mode.nvim",    -- Focus on one file
   "folke/twilight.nvim",    -- Focus on code block
-
-  -- {
-  -- 	"Exafunction/codeium.nvim",
-  -- 	dependencies = {
-  -- 		"nvim-lua/plenary.nvim",
-  -- 		"hrsh7th/nvim-cmp",
-  -- 	},
-  -- 	config = function()
-  -- 		require("codeium").setup({})
-  -- 	end,
-  -- },
   {
     "iamcco/markdown-preview.nvim",
     build = function()
@@ -134,10 +123,6 @@ return {
     },
   },
   {
-    'kevinhwang91/nvim-ufo', -- Folding like boss
-    dependencies = { 'kevinhwang91/promise-async' }
-  },
-  {
     "alexpasmantier/pymple.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -151,4 +136,14 @@ return {
       require("pymple").setup()
     end,
   },
+  -- {
+  --   'ray-x/navigator.lua',
+  --   dependencies = {
+  --     {
+  --       'ray-x/guihua.lua',
+  --       build = 'cd lua/fzy && make'
+  --     },
+  --     { 'neovim/nvim-lspconfig' },
+  --   },
+  -- }
 }
