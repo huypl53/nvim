@@ -47,17 +47,4 @@ vim.opt.formatoptions:append { 'r' }
 -- Wrap text
 vim.cmd([[set wrap]])
 
--- vim.api.nvim_create_autocmd("SessionLoadPost", {
---   callback = function()
---     -- Re-open vista.nvim
---     if vim.fn.exists(":Vista") == 2 then -- Check if Vista command exists
---       vim.cmd("Vista")
---     end
---     -- Re-open nvim-tree.lua
---     if vim.fn.exists(":NvimTreeOpen") == 2 then -- Check if NvimTreeOpen command exists
---       vim.cmd("NvimTreeOpen")
---     end
---   end,
--- })
-
 vim.o.sessionoptions = "buffers,curdir,folds,tabpages,winsize,winpos"

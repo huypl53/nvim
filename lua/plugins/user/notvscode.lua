@@ -10,6 +10,13 @@ return {
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
+  {
+    "kyazdani42/nvim-web-devicons",
+    -- defaults = {
+    --   lazy = true,
+    --   version = 'v0.99'
+    -- }
+  },                           -- File icons
   "nvim-lualine/lualine.nvim", -- Statusline
   "nvim-lua/plenary.nvim",     -- Common utilities
   "onsails/lspkind-nvim",      -- vscode-like pictograms
@@ -59,8 +66,7 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  "kevinhwang91/nvim-bqf",        -- Friendly quickfix
-  "kyazdani42/nvim-web-devicons", -- File icons
+  "kevinhwang91/nvim-bqf", -- Friendly quickfix
   "lukas-reineke/indent-blankline.nvim",
   {
     "nvim-telescope/telescope.nvim",

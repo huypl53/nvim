@@ -14,7 +14,6 @@ end
 
 mason.setup({})
 
-local protocol = require("vim.lsp.protocol")
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 local enable_format_on_save = function(_, bufnr)
@@ -49,33 +48,6 @@ local on_attach = function(client, bufnr)
   --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-protocol.CompletionItemKind = {
-  "", -- Text
-  "", -- Method
-  "", -- Function
-  "", -- Constructor
-  "", -- Field
-  "", -- Variable
-  "", -- Class
-  "ﰮ", -- Interface
-  "", -- Module
-  "", -- Property
-  "", -- Unit
-  "", -- Value
-  "", -- Enum
-  "", -- Keyword
-  "﬌", -- Snippet
-  "", -- Color
-  "", -- File
-  "", -- Reference
-  "", -- Folder
-  "", -- EnumMember
-  "", -- Constant
-  "", -- Struct
-  "", -- Event
-  "ﬦ", -- Operator
-  "", -- TypeParameter
-}
 
 
 local capabilities     = vim.lsp.protocol.make_client_capabilities()
@@ -142,7 +114,7 @@ nvim_lsp.lua_ls.setup({
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    -- enable_format_on_save(client, bufnr)
+    enable_format_on_save(client, bufnr)
   end,
   settings = {
     Lua = {
@@ -239,31 +211,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
   virtual_text = { spacing = 4, prefix = "●" },
   severity_sort = true,
-})
-
-
-vim.diagnostic.config({
-  signs = {
-    active = true,
-    priority = 100,
-    text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.HINT] = " ",
-      [vim.diagnostic.severity.INFO] = " ",
-    }
-  },
-  -- virtual_text = {
-  --   prefix = "●",
-  -- },
-  virtual_text = true,
-  update_in_insert = false,
-  serverity_sort = true,
-  float = {
-    source = "if_many", -- Or "if_many"
-  },
-  severity_sort = true
-
 })
 
 nvim_lsp.emmet_language_server.setup({
