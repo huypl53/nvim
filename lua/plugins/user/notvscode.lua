@@ -151,4 +151,5 @@ return {
       require("pymple").setup()
     end,
   },
+  { 'akinsho/toggleterm.nvim', version = "*", config = true }
 }
