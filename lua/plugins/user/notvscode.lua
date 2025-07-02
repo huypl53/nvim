@@ -38,7 +38,7 @@ return {
       "nvim-tree/nvim-web-devicons"
     },
   },
-  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+  { "L3MON4D3/LuaSnip",             build = "make install_jsregexp" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
@@ -104,17 +104,17 @@ return {
     event = "VeryLazy",
     opts = {},
   },
-  "lewis6991/gitsigns.nvim",
-  "dinhhuy258/git.nvim", -- For git blame & browse
+  "lewis6991/gitsigns.nvim", -- Deep buffer integration for Git
+  "dinhhuy258/git.nvim",     -- For git blame & browse
 
   {
     "ckipp01/nvim-jenkinsfile-linter",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
-  "mfussenegger/nvim-dap",
-  "mfussenegger/nvim-dap-python",
   "stevearc/conform.nvim", -- Code formatter
+  { "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } },
+  { "rcarriga/nvim-dap-ui",         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
