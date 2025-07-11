@@ -12,7 +12,9 @@ local function vscode_bind(mode, keys, command, ...)
 end
 
 vscode_bind("n", "gd", "editor.action.revealDefinition")
+vscode_bind("n", "gd", "editor.action.goToTypeDefinition")
 vscode_bind("n", "gp", "editor.action.peekDefinition")
+vscode_bind("n", "gP", "editor.action.peekTypeDefinition")
 vscode_bind("n", "sj", "workbench.action.navigateDown")
 vscode_bind("n", "sk", "workbench.action.navigateUp")
 vscode_bind("n", "sh", "workbench.action.navigateLeft")
