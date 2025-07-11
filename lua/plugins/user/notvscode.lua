@@ -48,7 +48,7 @@ return {
       require("nvim-treesitter.install").prefer_git = false
     end,
   },
-  'nvim-treesitter/nvim-treesitter-context',
+  'nvim-treesitter/nvim-treesitter-context', -- Sticky scroll keeps higher indent context
   "nvim-tree/nvim-tree.lua",
   "numToStr/Comment.nvim", -- Comment everything
   {
@@ -114,10 +114,6 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  },
-  {
-    'kevinhwang91/nvim-ufo', -- Folding like boss
-    dependencies = { 'kevinhwang91/promise-async' }
   },
   {
     "alexpasmantier/pymple.nvim",

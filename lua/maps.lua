@@ -24,6 +24,10 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 keymap.set("n", "se", ":edit ")
 -- New tab
 keymap.set("n", "te", ":tabedit ")
+
+-- Tav Move
+keymap.set("n", "th", ":tabm -1 <CR>")
+keymap.set("n", "tl", ":tabm +1 <CR>")
 -- Split window
 keymap.set("n", "ss", ":split<Return><C-w>w")
 keymap.set("n", "sv", ":vsplit<Return><C-w>w")
