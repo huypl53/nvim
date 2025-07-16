@@ -11,6 +11,14 @@ local function vscode_bind(mode, keys, command, ...)
   end)
 end
 
+vscode_bind('n', 'zM', 'editor.foldAll')
+vscode_bind('n', 'zR', 'editor.unfoldAll')
+vscode_bind('n', 'zc', 'editor.fold')
+vscode_bind('n', 'zC', 'editor.foldRecursively')
+vscode_bind('n', 'zo', 'editor.unfold')
+vscode_bind('n', 'zO', 'editor.unfoldRecursively')
+vscode_bind('n', 'za', 'editor.toggleFold')
+
 vscode_bind("n", "gd", "editor.action.revealDefinition")
 vscode_bind("n", "gd", "editor.action.goToTypeDefinition")
 vscode_bind("n", "gp", "editor.action.peekDefinition")

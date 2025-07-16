@@ -16,17 +16,26 @@ avante.setup(
     -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
     auto_suggestions_provider = "gemini",
     providers = {
-      claude = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-5-sonnet-20241022",
+      --   claude = {
+      --     endpoint = "https://api.anthropic.com",
+      --     model = "claude-3-5-sonnet-20241022",
+      --     extra_request_body = {
+      --       temperature = 0.75,
+      --       max_tokens = 4096,
+      --     },
+      --   },
+      gemini = {
+        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+        model = "gemini-2.0-flash",
+        timeout = 30000, -- Timeout in milliseconds
+        context_window = 1048576,
+        use_ReAct_prompt = true,
         extra_request_body = {
-          temperature = 0.75,
-          max_tokens = 4096,
+          generationConfig = {
+            temperature = 0.75,
+          },
         },
       },
-      -- gemini = {
-      --
-      -- }
     },
     ---Specify the special dual_boost mode
     ---1. enabled: Whether to enable dual_boost mode. Default to false.
@@ -161,5 +170,9 @@ avante.setup(
       debounce = 600,
       throttle = 600,
     },
+    override_prompt_dir = function()
+      -- Your logic to determine the prompt directory
+      return vim.fn.expand("~/.config/nvim/my_dynamic_prompts")
+    end,
   }
 )
