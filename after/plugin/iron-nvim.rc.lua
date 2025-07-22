@@ -32,14 +32,14 @@ iron.setup {
     -- How the repl window will be displayed
     -- See below for more information
     -- repl_open_cmd = view.bottom(40),
-    -- repl_open_cmd = view.split.vertical.rightbelow("25%"),
+    repl_open_cmd = view.split.vertical.rightbelow("20%"),
     -- repl_open_cmd = view.center("40%", "60%")
-    repl_open_cmd = view.offset {
-      width = math.floor(vim.o.columns * 0.4),
-      height = math.floor(vim.o.lines * 0.8),
-      w_offset = "50%",
-      h_offset = "10%"
-    },
+    -- repl_open_cmd = view.offset {
+    --   width = math.floor(vim.o.columns * 0.4),
+    --   height = math.floor(vim.o.lines * 0.8),
+    --   w_offset = "50%",
+    --   h_offset = "10%"
+    -- },
     -- repl_open_cmd can also be an array-style table so that multiple
     -- repl_open_commands can be given.
     -- When repl_open_cmd is given as a table, the first command given will
