@@ -185,8 +185,18 @@ return {
     },
   },
   {
-    "nosduco/remote-sshfs.nvim",
+    "nosduco/remote-sshfs.nvim", -- neovim SSH like vscode but using fs
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
-  'Vigemus/iron.nvim'
+  'Vigemus/iron.nvim',      -- REPL python
+  {
+    "nvim-neotest/neotest", --Testing integration
+    dependencies = {
+      "nvim-neotest/neotest-python",
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
+    }
+  }
 }
