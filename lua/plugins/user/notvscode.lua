@@ -34,7 +34,10 @@ return {
       "nvim-tree/nvim-web-devicons"
     },
   },
-  { "L3MON4D3/LuaSnip",             build = "make install_jsregexp" },
+  {
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp"
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
@@ -182,5 +185,9 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
+  },
+  {
+    "nosduco/remote-sshfs.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   }
 }
