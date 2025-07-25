@@ -10,15 +10,13 @@ return {
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
-  {
-    "kyazdani42/nvim-web-devicons",
-  },                           -- File icons
-  "nvim-lualine/lualine.nvim", -- Statusline
-  "nvim-lua/plenary.nvim",     -- Common utilities
-  "onsails/lspkind-nvim",      -- vscode-like pictograms
-  "hrsh7th/cmp-buffer",        -- nvim-cmp source for buffer words
-  "hrsh7th/cmp-nvim-lsp",      -- nvim-cmp source for neovim's built-in LSP
-  "hrsh7th/nvim-cmp",          -- Completion
+  "kyazdani42/nvim-web-devicons", -- File icons
+  "nvim-lualine/lualine.nvim",    -- Statusline
+  "nvim-lua/plenary.nvim",        -- Common utilities
+  "onsails/lspkind-nvim",         -- vscode-like pictograms
+  "hrsh7th/cmp-buffer",           -- nvim-cmp source for buffer words
+  "hrsh7th/cmp-nvim-lsp",         -- nvim-cmp source for neovim's built-in LSP
+  "hrsh7th/nvim-cmp",             -- Completion
   -- "jose-elias-alvarez/null-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
@@ -189,5 +187,6 @@ return {
   {
     "nosduco/remote-sshfs.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  }
+  },
+  'Vigemus/iron.nvim'
 }
