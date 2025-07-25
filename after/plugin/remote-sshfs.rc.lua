@@ -48,6 +48,7 @@ sshfs.setup {
 }
 
 local api = require('remote-sshfs.api')
+
 vim.keymap.set('n', '<leader>sc', api.connect, { desc = "Remote sshfs connect to host" })
 vim.keymap.set('n', '<leader>sd', api.disconnect, { desc = "Remote sshfs disconnect to host" })
 vim.keymap.set('n', '<leader>se', api.edit, { desc = "Remote sshfs edit hosts" })
@@ -55,17 +56,19 @@ vim.keymap.set('n', '<leader>se', api.edit, { desc = "Remote sshfs edit hosts" }
 -- (optional) Override telescope find_files and live_grep to make dynamic based on if connected to host
 local builtin = require("telescope.builtin")
 local connections = require("remote-sshfs.connections")
-vim.keymap.set("n", "<leader>ff", function()
+
+vim.keymap.set("n", "<leader>sf", function()
   if connections.is_connected() then
     api.find_files()
   else
     builtin.find_files()
   end
-end, {})
-vim.keymap.set("n", "<leader>fg", function()
+end, { desc = "Remote sshfs find files" })
+
+vim.keymap.set("n", "<leader>sg", function()
   if connections.is_connected() then
     api.live_grep()
   else
     builtin.live_grep()
   end
-end, {})
+end, { desc = "Remote sshfs live grep" })
