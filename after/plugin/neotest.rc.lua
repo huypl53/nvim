@@ -9,7 +9,7 @@ neotest.setup({
       dap = { justMyCode = false },
       -- Command line arguments for runner
       -- Can also be a function to return dynamic values
-      args = { "--log-level", "DEBUG" },
+      args = { "--capture", "no", "--log-level", "DEBUG" },
       -- Runner to use. Will use pytest if available by default.
       -- Can be a function to return dynamic value.
       runner = "pytest",
@@ -30,3 +30,36 @@ neotest.setup({
     })
   }
 })
+
+vim.keymap.set("n", "<leader>nw", function()
+  neotest.watch.toggle()
+end, { desc = "Neotest toggle watch" })
+
+
+vim.keymap.set("n", "<leader>nr", function()
+  neotest.run.run()
+end, { desc = "Neotest run nearest test" })
+
+vim.keymap.set("n", "<leader>nd", function()
+  neotest.run.run({ strategy = "dap" })
+end, { desc = "Neotest run dap" })
+
+vim.keymap.set("n", "<leader>nf", function()
+  neotest.run.run(vim.fn.expand("%"))
+end, { desc = "Neotest run current file" })
+
+vim.keymap.set("n", "<leader>np", function()
+  neotest.output_panel.toggle()
+end, { desc = "Neotest output panel toggle" })
+
+vim.keymap.set("n", "<leader>nx", function()
+  neotest.output_panel.clear()
+end, { desc = "Neotest output panel clear" })
+
+vim.keymap.set("n", "<leader>ns", function()
+  neotest.summary.toggle()
+end, { desc = "Neotest summary" })
+
+vim.keymap.set("n", "<leader>nm", function()
+  neotest.summary.run_marked()
+end, { desc = "Neotest run marked" })
