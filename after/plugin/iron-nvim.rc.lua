@@ -1,7 +1,8 @@
 local status, iron = pcall(require, "iron.core")
+if (not status) then return end
+
 local view = require("iron.view")
 local common = require("iron.fts.common")
-if (not status) then return end
 
 iron.setup {
   config = {
