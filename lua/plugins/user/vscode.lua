@@ -20,7 +20,7 @@ vscode_bind('n', 'zO', 'editor.unfoldRecursively')
 vscode_bind('n', 'za', 'editor.toggleFold')
 
 vscode_bind("n", "gd", "editor.action.revealDefinition")
-vscode_bind("n", "gd", "editor.action.goToTypeDefinition")
+vscode_bind("n", "gD", "editor.action.goToTypeDefinition")
 vscode_bind("n", "gp", "editor.action.peekDefinition")
 vscode_bind("n", "gP", "editor.action.peekTypeDefinition")
 vscode_bind("n", "sj", "workbench.action.navigateDown")
