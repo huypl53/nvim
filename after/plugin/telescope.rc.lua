@@ -345,6 +345,10 @@ vim.keymap.set("n", "sf", function()
   })
 end)
 
+vim.keymap.set("n", "<leader>/", function()
+  builtin.keymaps()
+end)
+
 vim.keymap.set("n", ";R", function()
   telescope.extensions.live_grep_args.live_grep_args()
 end)

@@ -102,21 +102,6 @@ return {
   { "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } },
   { "rcarriga/nvim-dap-ui",         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-    },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
-  },
-  {
     "alexpasmantier/pymple.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -198,5 +183,14 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter"
     }
+  },
+  {
+    's1n7ax/nvim-window-picker',
+    name = 'window-picker',
+    event = 'VeryLazy',
+    version = '2.*',
+    config = function()
+      require 'window-picker'.setup()
+    end,
   }
 }
