@@ -65,7 +65,7 @@ iron.setup {
     -- toggle_repl_with_cmd_1 = "<space>rv",
     -- toggle_repl_with_cmd_2 = "<space>rh",
     restart_repl = "<space>rr", -- calls `IronRestart` to restart the repl
-    send_motion = "<space>rc",
+    send_motion = "<space>rj",
     visual_send = "<space>rs",
     send_file = "<space>rf",
     send_line = "<space>rl",
@@ -80,7 +80,7 @@ iron.setup {
     cr = "<space>r<cr>",
     interrupt = "<space>r<space>",
     exit = "<space>rq",
-    clear = "<space>cl",
+    clear = "<space>rc",
   },
   -- If the highlight is on, you can change how it looks
   -- For the available options, check nvim_set_hl
