@@ -78,13 +78,13 @@ wpicker.setup({
     include_unfocusable_windows = false,
 
     -- filter using buffer options
-    bo = {
-      -- if the file type is one of following, the window will be ignored
-      filetype = { 'NvimTree', 'neo-tree', 'notify', 'snacks_notif' },
-
-      -- if the file type is one of following, the window will be ignored
-      buftype = { 'terminal' },
-    },
+    -- bo = {
+    --   -- if the file type is one of following, the window will be ignored
+    --   filetype = { 'NvimTree', 'neo-tree', 'notify', 'snacks_notif' },
+    --
+    --   -- if the file type is one of following, the window will be ignored
+    --   buftype = { 'terminal' },
+    -- },
 
     -- filter using window options
     wo = {},
@@ -104,25 +104,25 @@ wpicker.setup({
     enabled = true,
     statusline = {
       focused = {
-        fg = '#ededed',
+        fg = '#f7f7f7',
         bg = '#e35e4f',
         bold = true,
       },
       unfocused = {
-        fg = '#ededed',
-        bg = '#44cc41',
+        fg = '#f7f7f7',
+        bg = '#4a4a4a',
         bold = true,
       },
     },
     winbar = {
       focused = {
-        fg = '#ededed',
+        fg = '#f7f7f7',
         bg = '#e35e4f',
         bold = true,
       },
       unfocused = {
-        fg = '#ededed',
-        bg = '#44cc41',
+        fg = '#f7f7f7',
+        bg = '#4a4a4a',
         bold = true,
       },
     },
@@ -130,5 +130,26 @@ wpicker.setup({
 })
 
 vim.keymap.set("n", "<Leader>j", function()
-  wpicker.pick_window()
+  vim.api.nvim_set_current_win(wpicker.pick_window())
 end)
+-- Set the highlight groups for the WindowPicker plugin
+vim.api.nvim_set_hl(0, 'WindowPickerStatusLine', {
+  fg = '#f7f7f7',
+  bg = '#e35e4f',
+  bold = true,
+})
+vim.api.nvim_set_hl(0, 'WindowPickerStatusLineNC', {
+  fg = '#f7f7f7',
+  bg = '#3498db',
+  bold = true,
+})
+vim.api.nvim_set_hl(0, 'WindowPickerWinBar', {
+  fg = '#f7f7f7',
+  bg = '#e35e4f',
+  bold = true,
+})
+vim.api.nvim_set_hl(0, 'WindowPickerWinBarNC', {
+  fg = '#f7f7f7',
+  bg = '#3498db',
+  bold = true,
+})
