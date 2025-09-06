@@ -56,4 +56,4 @@ keymap.set("n", "yp", ':let @+=substitute(expand("%"), getcwd(), "", "g")<CR>')
 
 
 --terminal
-keymap.set("t", "<Esc>", [[ <C-\><C-n> ]])
+keymap.set("t", "<C-[>", [[ <C-\><C-n> ]])
