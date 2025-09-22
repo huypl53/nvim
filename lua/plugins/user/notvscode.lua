@@ -100,7 +100,7 @@ return {
 
   "stevearc/conform.nvim", -- Code formatter
   { "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } },
-  { "rcarriga/nvim-dap-ui",         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+  -- { "rcarriga/nvim-dap-ui",         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   {
     "alexpasmantier/pymple.nvim",
     dependencies = {
@@ -115,7 +115,7 @@ return {
       require("pymple").setup()
     end,
   },
-  { 'akinsho/toggleterm.nvim', version = "*", config = true }, -- Terminal inside vim
+  { 'akinsho/toggleterm.nvim',      version = "*",                             config = true }, -- Terminal inside vim
   {
     "yetone/avante.nvim",
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

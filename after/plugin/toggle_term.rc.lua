@@ -64,7 +64,7 @@ function _float_term_toggle()
   toggle_float_term:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _float_term_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>lua _float_term_toggle()<CR>", { noremap = true, silent = true })
 
 local toggle_vertical_term = Terminal:new({
   -- cmd = "lazygit",
@@ -90,5 +90,5 @@ function _vertical_term_toggle()
   toggle_vertical_term:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _vertical_term_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>lua _vertical_term_toggle()<CR>", { noremap = true, silent = true })
 --#endregion
