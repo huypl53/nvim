@@ -37,6 +37,9 @@ vscode_bind("n", "gt", "editor.action.goToTypeDefinition")
 vscode_bind("n", "<S-l>", "workbench.action.nextEditorInGroup")
 vscode_bind("n", "<S-h>", "workbench.action.previousEditorInGroup")
 
+vscode_bind("n", ";ga", "git.stageSelectedRanges")
+-- editorTextFocus && !operationInProgress && resourceScheme == 'file'
+
 
 keymap.set("n", "m;", function()
   vscode.call("bookmarks.toggle")
