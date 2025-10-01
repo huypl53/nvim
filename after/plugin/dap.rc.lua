@@ -41,6 +41,11 @@ end, { desc = "Debugger REPL open" })
 vim.keymap.set("n", "<Leader>dl", function()
   dap.run_last()
 end, { desc = "Debugger run last" })
+
+vim.keymap.set("n", "<Leader>dj", function()
+  dap.focus_frame()
+end, { desc = "Jump to current frame" })
+
 vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
   dap_widgets.hover()
 end, { desc = "Debugger hover" })
