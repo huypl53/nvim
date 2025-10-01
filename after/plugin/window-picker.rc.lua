@@ -130,8 +130,9 @@ wpicker.setup({
 })
 
 vim.keymap.set("n", "<Leader>j", function()
-  vim.api.nvim_set_current_win(wpicker.pick_window())
-end)
+    vim.api.nvim_set_current_win(wpicker.pick_window())
+  end,
+  { desc = 'Window picker' })
 -- Set the highlight groups for the WindowPicker plugin
 vim.api.nvim_set_hl(0, 'WindowPickerStatusLine', {
   fg = '#f7f7f7',
