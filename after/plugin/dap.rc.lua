@@ -11,6 +11,9 @@ if not status then
 end
 
 -- dap_widgets = dap.ui.widgets
+vim.keymap.set("n", "<Leader>dq", function()
+  dap.terminate()
+end, { desc = "Terminate dap session" })
 vim.keymap.set("n", "<F5>", function()
   dap.continue()
 end, { desc = "Debugger continue" })
@@ -25,6 +28,7 @@ vim.keymap.set("n", "<F12>", function()
 end, { desc = "Debugger step out" })
 vim.keymap.set("n", "<Leader>da", function()
   dap.list_breakpoints()
+  vim.cmd [[copen]]
 end, { desc = "Lists all breakpoints and log points in quickfix window." })
 vim.keymap.set("n", "<Leader>db", function()
   dap.toggle_breakpoint()
