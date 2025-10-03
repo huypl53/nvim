@@ -67,7 +67,7 @@ iron.setup {
     restart_repl = "<space>rr", -- calls `IronRestart` to restart the repl
     send_motion = "<space>rj",
     visual_send = "<space>rs",
-    send_file = "<space>rf",
+    send_file = "<space>ra",
     send_line = "<space>rl",
     send_paragraph = "<space>rp",
     send_until_cursor = "<space>ru",
