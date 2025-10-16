@@ -52,6 +52,9 @@ cmp.setup({
     { name = "buffer" },
     { name = "luasnip" },
     { name = "codeium" },
+    per_filetype = {
+      codecompanion = { "codecompanion" },
+    }
   }),
   formatting = {
     format = lspkind.cmp_format({ with_text = false, maxwidth = 50 }),
