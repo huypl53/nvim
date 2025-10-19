@@ -5,6 +5,7 @@ codecompanion.setup({
   strategies = {
     chat = {
       adapter = "gemini",
+      -- adapter = "codex",
     },
     inline = {
       adapter = "copilot",
@@ -30,6 +31,7 @@ codecompanion.setup({
           commands = {
             default = {
               "gemini",
+              "-m", "gemini-flash-latest",
               "--experimental-acp",
             },
           },
@@ -43,6 +45,20 @@ codecompanion.setup({
           -- },
         })
       end,
+      claude_code = function()
+        return require("codecompanion.adapters").extend("claude_code", {
+          -- env = {
+          --   CLAUDE_CODE_OAUTH_TOKEN = "my-oauth-token",
+          -- },
+        })
+      end,
+      -- codex = function()
+      --   return require("codecompanion.adapters").extend("codex", {
+      --     -- env = {
+      --     --   CLAUDE_CODE_OAUTH_TOKEN = "my-oauth-token",
+      --     -- },
+      --   })
+      -- end,
     },
   },
 })
