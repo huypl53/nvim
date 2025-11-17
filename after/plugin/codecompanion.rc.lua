@@ -4,11 +4,11 @@ if (not status) then return end
 codecompanion.setup({
   strategies = {
     chat = {
-      adapter = "gemini",
-      -- adapter = "codex",
+      -- adapter = "gemini",
+      adapter = "claude_code",
     },
     inline = {
-      adapter = "copilot",
+      adapter = "codex",
     },
     cmd = {
       adapter = "gemini",
@@ -52,13 +52,9 @@ codecompanion.setup({
           -- },
         })
       end,
-      -- codex = function()
-      --   return require("codecompanion.adapters").extend("codex", {
-      --     -- env = {
-      --     --   CLAUDE_CODE_OAUTH_TOKEN = "my-oauth-token",
-      --     -- },
-      --   })
-      -- end,
+      codex = function()
+        return require("codecompanion.adapters").extend("codex", {})
+      end,
     },
   },
 })

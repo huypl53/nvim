@@ -13,7 +13,7 @@ conform.setup({
     javascriptreact = { "deno_fmt", "prettierd", "prettier" },
     typescript = { "deno_fmt", "prettierd", "prettier" },
     typescriptreact = { "deno_fmt", "prettierd", "prettier" },
-    json = { "deno_fmt" },
+    json = { "jq" },
     sql = { "sql_formatter" },
   },
   -- format_on_save = function(bufnr)
