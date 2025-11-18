@@ -7,11 +7,6 @@ if not status2 then
   return
 end
 
-local status3, nvim_lsp = pcall(require, "lspconfig")
-if not status3 then
-  return
-end
-
 mason.setup({})
 
 
@@ -50,7 +45,7 @@ end
 
 
 
-local capabilities     = vim.lsp.protocol.make_client_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Set up completion using nvim_cmp with LSP source
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -78,44 +73,37 @@ masonlsp.setup({
     "cssmodules_ls",
     "emmet_language_server",
   },
+  automatic_enable = true,
   automatic_installation = true,
-  handlers = {
-    pyright = function()
-      nvim_lsp.pyright.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = "workspace",
-            },
-          },
-        }
-      })
-    end
-  }
 })
 
-nvim_lsp.ts_ls.setup({
-  on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "jsx" },
-  -- cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities,
-})
 
-nvim_lsp.sourcekit.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-nvim_lsp.lua_ls.setup({
+vim.lsp.config('*', {
+  -- on_attach = on_attach,
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     enable_format_on_save(client, bufnr)
   end,
+}
+)
+
+vim.lsp.config('pyright', {
+  analysis = {
+    autoSearchPaths = true,
+    useLibraryCodeForTypes = true,
+    diagnosticMode = "workspace",
+  },
+})
+
+-- TypeScript / JavaScript
+vim.lsp.config('ts_ls', {
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "jsx" },
+  -- cmd = { "typescript-language-server", "--stdio" },
+})
+
+-- Lua
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
@@ -131,60 +119,38 @@ nvim_lsp.lua_ls.setup({
   },
 })
 
-nvim_lsp.tailwindcss.setup({
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    local status, tailwindcss_color = pcall(require, "tailwindcss-colors")
-    if status then
-      tailwindcss_color.buf_attach(bufnr)
-    end
-  end,
-  capabilities = capabilities,
-})
-
-nvim_lsp.html.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-nvim_lsp.cssmodules_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
+-- CSS Modules
+vim.lsp.config('cssmodules_ls', {
   init_options = {
     camelCase = "dashes",
   },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 
-nvim_lsp.cssls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-nvim_lsp.astro.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-nvim_lsp.prismals.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-nvim_lsp.gopls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = nvim_lsp.util.root_pattern("go.work", "go.mod", ".git"),
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
+-- Emmet
+vim.lsp.config('emmet_language_server', {
+  filetypes = {
+    "css",
+    "eruby",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "less",
+    "sass",
+    "scss",
+    "pug",
+    "typescriptreact",
+  },
+  init_options = {
+    includeLanguages = {},
+    excludeLanguages = {},
+    extensionsPath = {},
+    preferences = {},
+    showAbbreviationSuggestions = true,
+    showExpandedAbbreviation = "always",
+    showSuggestionsAsSnippets = false,
+    syntaxProfiles = {},
+    variables = {},
   },
 })
 
@@ -211,30 +177,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
   virtual_text = { spacing = 4, prefix = "●" },
   severity_sort = true,
-})
-
-nvim_lsp.emmet_language_server.setup({
-  filetypes = {
-    "css",
-    "eruby",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "less",
-    "sass",
-    "scss",
-    "pug",
-    "typescriptreact",
-  },
-  init_options = {
-    includeLanguages = {},
-    excludeLanguages = {},
-    extensionsPath = {},
-    preferences = {},
-    showAbbreviationSuggestions = true,
-    showExpandedAbbreviation = "always",
-    showSuggestionsAsSnippets = false,
-    syntaxProfiles = {},
-    variables = {},
-  },
 })
