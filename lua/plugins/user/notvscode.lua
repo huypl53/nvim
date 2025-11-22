@@ -127,6 +127,7 @@ return {
       "nvim-lua/plenary.nvim",
       "ravitemer/mcphub.nvim"
     },
+    tag = "v17.32.0"
   },
   {
     "echasnovski/mini.diff",
