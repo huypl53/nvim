@@ -52,9 +52,8 @@ keymap.set("n", "sgm", ":set fdm=manual<CR>")
 keymap.set("n", "sgi", ":set fdm=indent<CR>")
 
 -- yank current file path to clipboard
-keymap.set("n", "yp", ':let @+=substitute(expand("%"), getcwd(), "", "g")<CR>')
-keymap.set("n", "yP", ':let @+ = expand("%:p")<CR>')
-
+keymap.set("n", "yp", ':let @+=substitute(expand("%:p"), getcwd() .. "/", "", "g")<CR>')
+keymap.set("n", "yP", ':let @+= expand("%:p")<CR>')
 
 --terminal
 keymap.set("t", "<C-[>", [[ <C-\><C-n> ]])
