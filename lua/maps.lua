@@ -57,3 +57,36 @@ keymap.set("n", "yP", ':let @+= expand("%:p")<CR>')
 
 --terminal
 keymap.set("t", "<C-[>", [[ <C-\><C-n> ]])
+
+-- Copy relative file path with line number(s)
+-- Usage: In normal mode copies current line, in visual mode copies line range
+
+local function copy_path_with_lines()
+  local path = vim.fn.expand('%')
+  local mode = vim.fn.mode()
+  local line_info
+
+  if mode == 'v' or mode == 'V' or mode == '\22' then
+    -- Visual mode: get range
+    local start_line = vim.fn.line('v')
+    local end_line = vim.fn.line('.')
+    if start_line > end_line then
+      start_line, end_line = end_line, start_line
+    end
+    line_info = start_line == end_line and tostring(start_line) or string.format('%d-%d', start_line, end_line)
+  else
+    -- Normal mode: current line
+    line_info = tostring(vim.fn.line('.'))
+  end
+
+  local result = string.format('@%s:%s', path, line_info)
+  vim.fn.setreg('+', result)
+  print('Copied: ' .. result)
+end
+
+-- Key mappings
+vim.keymap.set('n', '<leader>yr', copy_path_with_lines, { desc = 'Copy path with line number' })
+vim.keymap.set('v', '<leader>yr', function()
+  copy_path_with_lines()
+  vim.cmd('normal! \27') -- ESC to exit visual mode
+end, { desc = 'Copy path with line range' })
