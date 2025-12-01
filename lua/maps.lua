@@ -62,7 +62,14 @@ keymap.set("t", "<C-[>", [[ <C-\><C-n> ]])
 -- Usage: In normal mode copies current line, in visual mode copies line range
 
 local function copy_path_with_lines()
-  local path = vim.fn.expand('%')
+  local absolute_filepath = vim.fn.expand("%:p")
+
+  -- Get the current working directory (cwd)
+  -- local cwd = vim.fn.getcwd()
+  -- local path = vim.fn.expand('%')
+  -- local path = vim.fn.fnamemodify(absolute_filepath, "relativename")
+  -- local path = vim.fn.expand('%')
+  local path = vim.fn.substitute(vim.fn.expand("%:p"), vim.fn.getcwd() .. "/", "", "g")
   local mode = vim.fn.mode()
   local line_info
 
@@ -85,7 +92,6 @@ local function copy_path_with_lines()
 end
 
 -- Key mappings
-vim.keymap.set('n', '<leader>yr', copy_path_with_lines, { desc = 'Copy path with line number' })
 vim.keymap.set('v', '<leader>yr', function()
   copy_path_with_lines()
   vim.cmd('normal! \27') -- ESC to exit visual mode
