@@ -1,6 +1,7 @@
 require('base')
 require('highlights')
 require('maps')
+require('ultra_maps')
 
 local has = vim.fn.has
 local is_mac = has "macunix"
@@ -20,7 +21,7 @@ end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
--- if not (vim.loop).fs_stat(lazypath) then
+  -- if not (vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -34,4 +35,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('plugins')
-
+require('terminal-send').setup()
