@@ -56,4 +56,4 @@ keymap.set("n", "yp", ':let @+=substitute(expand("%:p"), getcwd() .. "/", "", "g
 keymap.set("n", "yP", ':let @+= expand("%:p")<CR>')
 
 --terminal
-keymap.set("t", "<C-]>", '<C-\\><C-N>', { noremap = true, silent = true })
+keymap.set("t", "<C-[>", '<C-\\><C-N>', { noremap = false, silent = true })
