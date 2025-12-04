@@ -2,6 +2,7 @@
 -- Send clipboard or selected lines to terminal and switch to it
 
 local M = {}
+local utils = require('utils')
 
 -- Find any existing terminal window
 function M.find_terminal()
@@ -62,8 +63,7 @@ end
 
 -- Send selected lines
 function M.send_selection()
-  local start_pos = vim.fn.getpos("'<")
-  local end_pos = vim.fn.getpos("'>")
+  local start_pos, end_pos = utils.get_visual_positions()
   local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
 
   if #lines == 0 then return end
@@ -123,7 +123,7 @@ function M.setup(opts)
   vim.keymap.set('n', keymaps.send_clipboard, M.send_clipboard, { desc = 'Send clipboard to terminal' })
   vim.keymap.set('v', keymaps.send_selection, function()
     M.send_selection()
-    vim.cmd('normal! \27') -- Exit visual mode
+    utils.exit_visual_mode()
   end, { desc = 'Send selection to terminal' })
 end
 
