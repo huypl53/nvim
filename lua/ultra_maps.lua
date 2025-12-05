@@ -38,6 +38,6 @@ local function send_path_lines()
   term_send.send_clipboard()
 end
 
-vim.keymap.set('v', '<leader>yl', function()
+vim.keymap.set('v', '<leader>l', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })

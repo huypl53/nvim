@@ -50,9 +50,15 @@ function M.send_and_switch(text)
   -- Send text without newline
   vim.api.nvim_chan_send(chan, text)
 
-  -- Switch to terminal window and enter insert mode
-  vim.api.nvim_set_current_win(win)
-  vim.cmd('startinsert!')
+  -- Switch to terminal window and enter insert mode after this mapping finishes
+  vim.schedule(function()
+    if vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_set_current_win(win)
+      local keys = vim.api.nvim_replace_termcodes('i', true, false, true)
+      -- Use feedkeys in terminal-mode context so we reliably end in terminal insert
+      vim.api.nvim_feedkeys(keys, 't', false)
+    end
+  end)
 end
 
 -- Send clipboard

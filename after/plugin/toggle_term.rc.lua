@@ -10,7 +10,7 @@ toggleterm.setup({
     if term.direction == "horizontal" then
       return 15
     elseif term.direction == "vertical" then
-      return vim.o.columns * 0.45
+      return vim.o.columns * 0.5
     end
   end,
 })
@@ -35,7 +35,7 @@ local lazygit = Terminal:new({
   end,
 })
 
-local function _term_lazygit_toggle()
+function _term_lazygit_toggle()
   lazygit:toggle()
 end
 
