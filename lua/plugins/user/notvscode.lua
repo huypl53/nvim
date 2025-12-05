@@ -112,7 +112,17 @@ return {
     },
     build = ":PympleBuild",
     config = function()
-      require("pymple").setup()
+      require("pymple").setup({
+        keymaps = {
+          -- Resolves import for symbol under cursor.
+          -- This will automatically find and add the corresponding import to
+          -- the top of the file (below any existing doctsring)
+          resolve_import_under_cursor = {
+            desc = "Resolve import under cursor",
+            keys = "<C-space>" -- feel free to change this to whatever you like
+          }
+        },
+      })
     end,
   },
   {
