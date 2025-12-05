@@ -21,7 +21,9 @@ local function copy_path_with_lines()
   print('Copied: ' .. result)
 end
 
-vim.keymap.set("n", "yr", ':let @+="@" .. substitute(expand("%:p"), getcwd() .. "/", "", "g")<CR>')
+vim.keymap.set("n", "yr", function()
+  utils.copy_relative_path()
+end)
 
 -- Key mappings
 vim.keymap.set('v', '<leader>yr', function()
@@ -34,10 +36,16 @@ if (not status) then return end
 
 local function send_path_lines()
   copy_path_with_lines()
-  utils.exit_visual_mode()
+  if utils.is_visual_mode() then
+    utils.exit_visual_mode()
+  end
   term_send.send_clipboard()
 end
 
 vim.keymap.set('v', '<leader>l', function()
+  send_path_lines()
+end, { desc = 'copy path with lines then send to term' })
+
+vim.keymap.set('n', '<leader>l', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })

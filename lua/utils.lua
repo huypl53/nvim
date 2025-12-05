@@ -36,4 +36,12 @@ function M.get_relative_path()
   return vim.fn.substitute(vim.fn.expand("%:p"), vim.fn.getcwd() .. "/", "", "g")
 end
 
+-- Copy relative path (prefixed with @) to system clipboard
+function M.copy_relative_path()
+  local path = M.get_relative_path()
+  local result = '@' .. path
+  vim.fn.setreg('+', result)
+  print('Copied: ' .. result)
+end
+
 return M
