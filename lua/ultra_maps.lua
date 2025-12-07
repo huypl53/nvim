@@ -34,12 +34,12 @@ end, { desc = 'Copy path with line range' })
 local status, term_send = pcall(require, 'terminal-send')
 if (not status) then return end
 
-local function send_path_lines()
+local function send_path_lines(opts)
   copy_path_with_lines()
   if utils.is_visual_mode() then
     utils.exit_visual_mode()
   end
-  term_send.send_clipboard()
+  term_send.send_clipboard(opts)
 end
 
 vim.keymap.set('v', '<leader>l', function()
@@ -49,3 +49,11 @@ end, { desc = 'copy path with lines then send to term' })
 vim.keymap.set('n', '<leader>l', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })
+
+vim.keymap.set('v', '<leader>L', function()
+  send_path_lines({ switch = false })
+end, { desc = 'copy path with lines then send to term (stay)' })
+
+vim.keymap.set('n', '<leader>L', function()
+  send_path_lines({ switch = false })
+end, { desc = 'copy path with lines then send to term (stay)' })
