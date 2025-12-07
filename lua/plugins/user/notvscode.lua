@@ -139,16 +139,16 @@ return {
     },
     tag = "v17.32.0"
   },
-  {
-    "echasnovski/mini.diff",
-    config = function()
-      local diff = require("mini.diff")
-      diff.setup({
-        -- Disabled by default
-        source = diff.gen_source.none(),
-      })
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.diff",
+  --   config = function()
+  --     local diff = require("mini.diff")
+  --     diff.setup({
+  --       -- Disabled by default
+  --       source = diff.gen_source.none(),
+  --     })
+  --   end,
+  -- },
   {
     "nosduco/remote-sshfs.nvim", -- neovim SSH like vscode but using fs
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
