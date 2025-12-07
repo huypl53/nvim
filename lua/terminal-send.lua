@@ -26,9 +26,9 @@ local function highlight_last_terminal(buf)
   -- Light touch: highlight the top line of the terminal buffer
   pcall(vim.api.nvim_set_hl, 0, 'TerminalSendLast', { link = 'Search' })
   pcall(vim.api.nvim_buf_set_extmark, buf, highlight_ns, 0, 0, {
-    hl_group = 'TerminalSendLast',
-    hl_eol = true, -- extend highlight to end of line
-    end_col = 0,   -- required when using hl_eol
+    -- line highlight works best in terminals where columns can move
+    line_hl_group = 'TerminalSendLast',
+    priority = 50,
   })
 
   highlighted_buf = buf
