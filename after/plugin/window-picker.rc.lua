@@ -10,6 +10,7 @@ wpicker.setup({
   -- 'floating-big-letter' draw big letter on a floating window
   -- 'floating-letter' draw letter on a floating window
   -- used
+  -- hint = 'floating-big-letter',
   hint = 'statusline-winbar',
 
   -- when you go to window selection mode, status bar will show one of
@@ -78,13 +79,13 @@ wpicker.setup({
     include_unfocusable_windows = false,
 
     -- filter using buffer options
-    -- bo = {
-    --   -- if the file type is one of following, the window will be ignored
-    --   filetype = { 'NvimTree', 'neo-tree', 'notify', 'snacks_notif' },
-    --
-    --   -- if the file type is one of following, the window will be ignored
-    --   buftype = { 'terminal' },
-    -- },
+    bo = {
+      -- if the file type is one of following, the window will be ignored
+      filetype = { 'NvimTree', 'neo-tree', 'notify', 'snacks_notif' },
+
+      -- if the file type is one of following, the window will be ignored
+      buftype = {},
+    },
 
     -- filter using window options
     wo = {},
@@ -130,27 +131,30 @@ wpicker.setup({
 })
 
 vim.keymap.set("n", "<Leader>j", function()
-    vim.api.nvim_set_current_win(wpicker.pick_window())
+    local win_id = require('window-picker').pick_window()
+    if (win_id) then
+      vim.api.nvim_set_current_win(win_id)
+    end
   end,
   { desc = 'Window picker' })
 -- Set the highlight groups for the WindowPicker plugin
 vim.api.nvim_set_hl(0, 'WindowPickerStatusLine', {
-  fg = '#f7f7f7',
-  bg = '#e35e4f',
+  fg = '#0f111a', -- deep navy text (fits dark themes)
+  bg = '#9ece6a', -- soft tokyo-night green (active)
   bold = true,
 })
 vim.api.nvim_set_hl(0, 'WindowPickerStatusLineNC', {
-  fg = '#f7f7f7',
-  bg = '#3498db',
+  fg = '#c0caf5', -- light lavender text (theme-like)
+  bg = '#3b4261', -- muted blue-gray (inactive)
   bold = true,
 })
 vim.api.nvim_set_hl(0, 'WindowPickerWinBar', {
-  fg = '#f7f7f7',
-  bg = '#e35e4f',
+  fg = '#0f111a',
+  bg = '#9ece6a',
   bold = true,
 })
 vim.api.nvim_set_hl(0, 'WindowPickerWinBarNC', {
-  fg = '#f7f7f7',
-  bg = '#3498db',
+  fg = '#c0caf5',
+  bg = '#3b4261',
   bold = true,
 })
