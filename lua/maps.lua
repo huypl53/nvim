@@ -39,10 +39,10 @@ keymap.set("", "sj", "<C-w>j")
 keymap.set("", "sl", "<C-w>l")
 
 -- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><")
-keymap.set("n", "<C-w><right>", "<C-w>>")
-keymap.set("n", "<C-w><up>", "<C-w>+")
-keymap.set("n", "<C-w><down>", "<C-w>-")
+keymap.set("n", "<C-left>", "<cmd>vertical resize -2<CR>")
+keymap.set("n", "<C-right>", "<cmd>vertical resize +2<CR>")
+keymap.set("n", "<C-up>", "<cmd>resize +2<CR>")
+keymap.set("n", "<C-down>", "<cmd>resize -2<CR>")
 
 -- Scroll bind
 keymap.set("n", "sb", ":windo set scb!<CR>")
