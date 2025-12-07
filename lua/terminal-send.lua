@@ -9,6 +9,27 @@ local last_terminal = {
   win = nil,
 }
 
+local highlight_ns = vim.api.nvim_create_namespace('TerminalSendLast')
+local highlighted_buf = nil
+
+-- Visually mark the remembered terminal so it stands out
+local function highlight_last_terminal(buf)
+  if highlighted_buf and vim.api.nvim_buf_is_valid(highlighted_buf) then
+    vim.api.nvim_buf_clear_namespace(highlighted_buf, highlight_ns, 0, -1)
+  end
+
+  if not (buf and vim.api.nvim_buf_is_valid(buf)) then
+    highlighted_buf = nil
+    return
+  end
+
+  -- Light touch: highlight the top line of the terminal buffer
+  pcall(vim.api.nvim_set_hl, 0, 'TerminalSendLast', { link = 'Search' })
+  pcall(vim.api.nvim_buf_add_highlight, buf, highlight_ns, 'TerminalSendLast', 0, 0, -1)
+
+  highlighted_buf = buf
+end
+
 local function remember_terminal(buf, win)
   if not (buf and vim.api.nvim_buf_is_valid(buf)) then
     return
@@ -25,6 +46,8 @@ local function remember_terminal(buf, win)
   else
     last_terminal.win = nil
   end
+
+  highlight_last_terminal(buf)
 end
 
 -- Track the most recently visited terminal
