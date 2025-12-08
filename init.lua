@@ -36,3 +36,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require('plugins')
 require('terminal-send').setup()
+require('window-send').setup()
