@@ -64,7 +64,8 @@ local function resolve_target_window(explicit_win)
 end
 
 -- Insert text into target window without disturbing the current window
-local function insert_text(target_win, text)
+local function insert_text(target_win, text, opts)
+  opts = opts or {}
   local buf = vim.api.nvim_win_get_buf(target_win)
   if not vim.api.nvim_buf_is_loaded(buf) then
     pcall(vim.fn.bufload, buf)
@@ -76,6 +77,13 @@ local function insert_text(target_win, text)
 
   local line = vim.api.nvim_buf_get_lines(buf, row, row + 1, true)[1] or ''
   col = math.min(col, #line)
+
+  if opts.pad_left and col > 0 then
+    local prev_char = line:sub(col, col)
+    if prev_char ~= '' and not prev_char:match('%s') then
+      text = ' ' .. text
+    end
+  end
 
   local lines = split_lines_preserve(text)
   vim.api.nvim_buf_set_text(buf, row, col, row, col, lines)
@@ -110,7 +118,7 @@ function M.send_text(text, opts)
 
   local should_switch = opts.switch ~= false
   local payload = (should_switch and text) or (text .. ' ')
-  local new_row, new_col = insert_text(target_win, payload)
+  local new_row, new_col = insert_text(target_win, payload, { pad_left = should_switch == false })
 
   local function place_cursor()
     if not is_normal_window(target_win) then
