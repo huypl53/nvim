@@ -6,20 +6,11 @@ saga.setup {
   --   typescript = 'typescript'
   -- },
   code_action_icon = "",
-  ui = {
-    code_action = "",
-  },
   symbol_in_winbar = {
-    in_custom = false,
     enable = true,
+    hide_keyword = false,
     separator = ' ',
     show_file = true,
-    -- define how to customize filename, eg: %:., %
-    -- if not set, use default value `%:t`
-    -- more information see `vim.fn.expand` or `expand`
-    -- ## only valid after set `show_file = true`
-    file_formatter = "",
-    click_support = false,
   },
   finder = {
     max_height = 0.5,
@@ -42,16 +33,38 @@ saga.setup {
     split = "<C-c>i",
     tabe = "<C-c>t",
     quit = "q",
-  }
+  },
+  outline = {
+    auto_preview = false,
+    detail = false
+  },
+  ui = {
+    -- Ensure icons are used in other UI elements
+    code_action = "💡",
+    diagnostic = "",
+  },
+  diagnostic = {
+    show_code_action = true,
+    show_source = false,
+    jump_diagnostic = true,
+    diagnostic_only_current = false,
+    -- Ensure lspsaga handles floating windows
+    auto_preview = false, -- Show diagnostic window on hover
+    -- max_height = 10,
+    -- max_width = 80,
+    signs = false, -- Let Neovim handle signs (already configured)
+  },
 }
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
 vim.keymap.set('n', '<C-k>', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
 vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
-vim.keymap.set('n', 'gd', '<Cmd>Lspsaga finder <CR>', opts)
-vim.keymap.set('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
+vim.keymap.set('n', 'gD', '<Cmd>Lspsaga goto_type_definition <CR>', opts)
+vim.keymap.set('n', 'gd', '<Cmd>Lspsaga goto_definition <CR>', opts)
+vim.keymap.set('n', 'gf', '<Cmd>Lspsaga finder <CR>', opts)
 vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
-vim.keymap.set('n', 'go', '<Cmd>Lspsaga outline<CR>', opts)
+vim.keymap.set('n', 'gP', '<Cmd>Lspsaga peek_type_definition<CR>', opts)
+-- vim.keymap.set('n', 'go', '<Cmd>Lspsaga outline<CR>', opts)
 vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 vim.keymap.set('n', 'ga', '<Cmd>Lspsaga code_action<CR>', opts)

@@ -46,3 +46,5 @@ vim.opt.formatoptions:append { 'r' }
 
 -- Wrap text
 vim.cmd([[set wrap]])
+
+vim.o.sessionoptions = "buffers,curdir,folds,tabpages,winsize,winpos"

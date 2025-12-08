@@ -1,7 +1,9 @@
 local status, ts = pcall(require, "nvim-treesitter.configs")
-if (not status) then return end
+if not status then
+  return
+end
 
-ts.setup {
+ts.setup({
   highlight = {
     enable = true,
     disable = {},
@@ -12,9 +14,9 @@ ts.setup {
   },
   ensure_installed = {
     "vim",
-    "tsx",
+    -- "tsx",
     "toml",
-    "php",
+    -- "php",
     "json",
     "yaml",
     "css",
@@ -23,16 +25,15 @@ ts.setup {
     "dart",
     "python",
     "typescript",
-    "javascript"
+    "javascript",
+    "markdown",
+    "markdown_inline"
   },
-  autotag = {
-    enable = true,
-    enable_close_on_slash = false
-  }
-}
+  auto_install = true,
+})
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
-local context_comment = require('ts_context_commentstring').setup{}
+local context_comment = require("ts_context_commentstring").setup({})
 vim.g.skip_ts_context_commentstring_module = true
