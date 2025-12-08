@@ -130,15 +130,15 @@ return {
     version = "*",
     config = true
   }, -- Terminal inside vim
-  {
-    "olimorris/codecompanion.nvim",
-    opts = {},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "ravitemer/mcphub.nvim"
-    },
-    tag = "v17.32.0"
-  },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "ravitemer/mcphub.nvim"
+  --   },
+  --   tag = "v17.32.0"
+  -- },
   -- {
   --   "echasnovski/mini.diff",
   --   config = function()
