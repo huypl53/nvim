@@ -57,3 +57,31 @@ end, { desc = 'copy path with lines then send to term (stay)' })
 vim.keymap.set('n', '<leader>L', function()
   send_path_lines({ switch = false })
 end, { desc = 'copy path with lines then send to term (stay)' })
+
+-- Send to last window instead of terminal
+local win_status, win_send = pcall(require, 'window-send')
+if win_status then
+  local function send_path_lines_window(opts)
+    copy_path_with_lines()
+    if utils.is_visual_mode() then
+      utils.exit_visual_mode()
+    end
+    win_send.send_clipboard(opts)
+  end
+
+  vim.keymap.set('v', '<leader>k', function()
+    send_path_lines_window()
+  end, { desc = 'copy path with lines then send to window' })
+
+  vim.keymap.set('n', '<leader>k', function()
+    send_path_lines_window()
+  end, { desc = 'copy path with lines then send to window' })
+
+  vim.keymap.set('v', '<leader>K', function()
+    send_path_lines_window({ switch = false })
+  end, { desc = 'copy path with lines then send to window (stay)' })
+
+  vim.keymap.set('n', '<leader>K', function()
+    send_path_lines_window({ switch = false })
+  end, { desc = 'copy path with lines then send to window (stay)' })
+end
