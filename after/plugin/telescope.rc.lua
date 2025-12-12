@@ -352,3 +352,6 @@ end)
 vim.keymap.set("n", ";R", function()
   telescope.extensions.live_grep_args.live_grep_args()
 end)
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set('n', 'gf', '<Cmd>Telescope lsp_references<CR>', opts)
