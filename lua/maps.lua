@@ -57,3 +57,15 @@ keymap.set("n", "yP", ':let @+= expand("%:p")<CR>')
 
 --terminal
 keymap.set("t", "<leader>q", '<C-\\><C-N>', { noremap = false, silent = true })
+
+
+-- lsp
+keymap.set("n", "grv", function()
+  vim.cmd('vsplit')
+  vim.lsp.buf.type_definition({ reuse_win = true })
+end, { silent = true })
+
+keymap.set("n", "grt", function()
+  vim.cmd("tab split")
+  vim.lsp.buf.type_definition({ reuse_win = false })
+end)
