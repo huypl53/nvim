@@ -91,7 +91,7 @@ return {
     opts = {},
   },
   "lewis6991/gitsigns.nvim", -- Deep buffer integration for Git
-  "dinhhuy258/git.nvim",     -- For git blame & browse
+  -- "dinhhuy258/git.nvim",     -- For git blame & browse
 
   {
     "ckipp01/nvim-jenkinsfile-linter",
