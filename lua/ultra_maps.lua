@@ -3,23 +3,6 @@
 
 local utils = require('utils')
 
-local function copy_path_with_lines()
-  local path = utils.get_relative_path()
-  local line_info
-
-  if utils.is_visual_mode() then
-    -- Visual mode: get range
-    local start_line, end_line = utils.get_visual_range()
-    line_info = start_line == end_line and tostring(start_line) or string.format('%d-%d', start_line, end_line)
-  else
-    -- Normal mode: current line
-    line_info = tostring(vim.fn.line('.'))
-  end
-
-  local result = string.format('@%s:%s', path, line_info)
-  vim.fn.setreg('+', result)
-  print('Copied: ' .. result)
-end
 
 vim.keymap.set("n", "yr", function()
   utils.copy_relative_path()
@@ -27,7 +10,7 @@ end)
 
 -- Key mappings
 vim.keymap.set('v', '<leader>yr', function()
-  copy_path_with_lines()
+  utils.copy_path_with_lines()
   utils.exit_visual_mode()
 end, { desc = 'Copy path with line range' })
 
@@ -35,26 +18,26 @@ local status, term_send = pcall(require, 'terminal-send')
 if (not status) then return end
 
 local function send_path_lines(opts)
-  copy_path_with_lines()
+  utils.copy_path_with_lines()
   if utils.is_visual_mode() then
     utils.exit_visual_mode()
   end
   term_send.send_clipboard(opts)
 end
 
-vim.keymap.set('v', '<leader>l', function()
+vim.keymap.set('v', '<localleader>l', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })
 
-vim.keymap.set('n', '<leader>l', function()
+vim.keymap.set('n', '<localleader>l', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })
 
-vim.keymap.set('v', '<leader>L', function()
+vim.keymap.set('v', '<localleader>L', function()
   send_path_lines({ switch = false })
 end, { desc = 'copy path with lines then send to term (stay)' })
 
-vim.keymap.set('n', '<leader>L', function()
+vim.keymap.set('n', '<localleader>L', function()
   send_path_lines({ switch = false })
 end, { desc = 'copy path with lines then send to term (stay)' })
 
@@ -62,26 +45,26 @@ end, { desc = 'copy path with lines then send to term (stay)' })
 local win_status, win_send = pcall(require, 'window-send')
 if win_status then
   local function send_path_lines_window(opts)
-    copy_path_with_lines()
+    utils.copy_path_with_lines()
     if utils.is_visual_mode() then
       utils.exit_visual_mode()
     end
     win_send.send_clipboard(opts)
   end
 
-  vim.keymap.set('v', '<leader>k', function()
+  vim.keymap.set('v', '<localleader>k', function()
     send_path_lines_window()
   end, { desc = 'copy path with lines then send to window' })
 
-  vim.keymap.set('n', '<leader>k', function()
+  vim.keymap.set('n', '<localleader>k', function()
     send_path_lines_window()
   end, { desc = 'copy path with lines then send to window' })
 
-  vim.keymap.set('v', '<leader>K', function()
+  vim.keymap.set('v', '<localleader>K', function()
     send_path_lines_window({ switch = false })
   end, { desc = 'copy path with lines then send to window (stay)' })
 
-  vim.keymap.set('n', '<leader>K', function()
+  vim.keymap.set('n', '<localleader>K', function()
     send_path_lines_window({ switch = false })
   end, { desc = 'copy path with lines then send to window (stay)' })
 end

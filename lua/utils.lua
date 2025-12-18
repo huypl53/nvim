@@ -37,11 +37,35 @@ function M.get_relative_path()
 end
 
 -- Copy relative path (prefixed with @) to system clipboard
-function M.copy_relative_path()
+function M.copy_relative_path(not_clipboard)
   local path = M.get_relative_path()
   local result = '@' .. path
-  vim.fn.setreg('+', result)
+  if not_clipboard then
+    vim.fn.setreg('+', result)
+  end
   print('Copied: ' .. result)
+  return result
+end
+
+function M.copy_path_with_lines(not_clipboard)
+  local path = M.get_relative_path()
+  local line_info
+
+  if M.is_visual_mode() then
+    -- Visual mode: get range
+    local start_line, end_line = M.get_visual_range()
+    line_info = start_line == end_line and tostring(start_line) or string.format('%d-%d', start_line, end_line)
+  else
+    -- Normal mode: current line
+    line_info = tostring(vim.fn.line('.'))
+  end
+
+  local result = string.format(' @%s:%s', path, line_info)
+  if not_clipboard == nil then
+    vim.fn.setreg('+', result)
+  end
+  print('Copied: ' .. result)
+  return result
 end
 
 return M

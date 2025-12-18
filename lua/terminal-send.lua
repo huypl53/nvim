@@ -236,8 +236,8 @@ function M.setup(opts)
   opts = opts or {}
 
   local keymaps = opts.keymaps or {
-    send_clipboard = '<leader>tc',
-    send_selection = '<leader>ts',
+    send_clipboard = '<localleader>tc',
+    send_selection = '<localleader>ts',
   }
 
   vim.keymap.set('n', keymaps.send_clipboard, M.send_clipboard, { desc = 'Send clipboard to terminal' })
