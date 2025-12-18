@@ -3,23 +3,6 @@
 
 local utils = require('utils')
 
-local function copy_path_with_lines()
-  local path = utils.get_relative_path()
-  local line_info
-
-  if utils.is_visual_mode() then
-    -- Visual mode: get range
-    local start_line, end_line = utils.get_visual_range()
-    line_info = start_line == end_line and tostring(start_line) or string.format('%d-%d', start_line, end_line)
-  else
-    -- Normal mode: current line
-    line_info = tostring(vim.fn.line('.'))
-  end
-
-  local result = string.format('@%s:%s', path, line_info)
-  vim.fn.setreg('+', result)
-  print('Copied: ' .. result)
-end
 
 vim.keymap.set("n", "yr", function()
   utils.copy_relative_path()
@@ -27,7 +10,7 @@ end)
 
 -- Key mappings
 vim.keymap.set('v', '<leader>yr', function()
-  copy_path_with_lines()
+  utils.copy_path_with_lines()
   utils.exit_visual_mode()
 end, { desc = 'Copy path with line range' })
 
@@ -35,7 +18,7 @@ local status, term_send = pcall(require, 'terminal-send')
 if (not status) then return end
 
 local function send_path_lines(opts)
-  copy_path_with_lines()
+  utils.copy_path_with_lines()
   if utils.is_visual_mode() then
     utils.exit_visual_mode()
   end
@@ -62,7 +45,7 @@ end, { desc = 'copy path with lines then send to term (stay)' })
 local win_status, win_send = pcall(require, 'window-send')
 if win_status then
   local function send_path_lines_window(opts)
-    copy_path_with_lines()
+    utils.copy_path_with_lines()
     if utils.is_visual_mode() then
       utils.exit_visual_mode()
     end

@@ -168,8 +168,8 @@ function M.setup(opts)
   opts = opts or {}
 
   local keymaps = opts.keymaps or {
-    send_clipboard = '<leader>wc',
-    send_selection = '<leader>ws',
+    send_clipboard = '<localleader>wc',
+    send_selection = '<localleader>ws',
   }
 
   vim.keymap.set('n', keymaps.send_clipboard, function()
