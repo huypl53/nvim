@@ -6,7 +6,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>l', function()
   path_lines = ' ' .. path_lines .. ' '
   local tmux_cmd = 'tmux send-key -t ! "' .. path_lines .. '" && tmux last-pane'
   local send_cmd = 'call system(\'' .. tmux_cmd .. '\')'
-  print(send_cmd)
   vim.cmd(send_cmd)
 end)
 
@@ -16,7 +15,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>L', function()
   path_lines = ' ' .. path_lines .. ' '
   local tmux_cmd = 'tmux send-key -t ! "' .. path_lines .. '"'
   local send_cmd = 'call system(\'' .. tmux_cmd .. '\')'
-  print(send_cmd)
   vim.cmd(send_cmd)
 end)
 
@@ -28,7 +26,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>k', function()
   path_lines = ' ' .. path_lines .. ' '
   local tmux_cmd = 'tmux send-key -t ! "' .. path_lines .. '" && tmux last-pane'
   local send_cmd = 'call system(\'' .. tmux_cmd .. '\')'
-  print(send_cmd)
   vim.cmd(send_cmd)
 end)
 
@@ -38,6 +35,5 @@ vim.keymap.set({ 'n', 'v' }, '<leader>K', function()
   path_lines = ' ' .. path_lines .. ' '
   local tmux_cmd = 'tmux send-key -t ! "' .. path_lines .. '"'
   local send_cmd = 'call system(\'' .. tmux_cmd .. '\')'
-  print(send_cmd)
   vim.cmd(send_cmd)
 end)
