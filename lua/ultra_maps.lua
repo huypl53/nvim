@@ -25,19 +25,19 @@ local function send_path_lines(opts)
   term_send.send_clipboard(opts)
 end
 
-vim.keymap.set('v', '<localleader>l', function()
+vim.keymap.set('v', '<localleader>m', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })
 
-vim.keymap.set('n', '<localleader>l', function()
+vim.keymap.set('n', '<localleader>m', function()
   send_path_lines()
 end, { desc = 'copy path with lines then send to term' })
 
-vim.keymap.set('v', '<localleader>L', function()
+vim.keymap.set('v', '<localleader>M', function()
   send_path_lines({ switch = false })
 end, { desc = 'copy path with lines then send to term (stay)' })
 
-vim.keymap.set('n', '<localleader>L', function()
+vim.keymap.set('n', '<localleader>M', function()
   send_path_lines({ switch = false })
 end, { desc = 'copy path with lines then send to term (stay)' })
 

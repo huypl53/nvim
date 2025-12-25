@@ -8,7 +8,17 @@ bufferline.setup({
     always_show_bufferline = false,
     show_buffer_close_icons = false,
     show_close_icon = false,
-    color_icons = true
+    color_icons = true,
+
+    -- indicator = {
+    --   icon = '▎', -- this should be omitted if indicator style is not 'icon'
+    --   style = 'icon' | 'underline' | 'none',
+    -- },
+    buffer_close_icon = '󰅖',
+    modified_icon = '● ',
+    close_icon = ' ',
+    left_trunc_marker = ' ',
+    right_trunc_marker = ' ',
   },
   highlights = {
     separator = {
@@ -30,6 +40,8 @@ bufferline.setup({
       bg = '#073642'
     }
   },
+
+
 })
 
 vim.keymap.set('n', '<S-l>', '<Cmd>BufferLineCycleNext<CR>', {})
