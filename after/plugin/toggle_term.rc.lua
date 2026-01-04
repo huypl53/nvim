@@ -1,3 +1,5 @@
+if true then return end
+
 local status, tg_term = pcall(require, 'toggleterm.terminal')
 if not status then return end
 

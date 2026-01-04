@@ -7,7 +7,7 @@ return {
         light_style = "night",
         transparent = true,
       })
-      vim.cmd([[colorscheme tokyonight]])
+      -- vim.cmd([[colorscheme tokyonight]])
     end,
   },
   "kyazdani42/nvim-web-devicons", -- File icons
@@ -125,11 +125,11 @@ return {
       })
     end,
   },
-  {
-    'akinsho/toggleterm.nvim',
-    version = "*",
-    config = true
-  },                             -- Terminal inside vim
+  -- {
+  --   'akinsho/toggleterm.nvim',
+  --   version = "*",
+  --   config = true
+  -- },                             -- Terminal inside vim
   {
     "nosduco/remote-sshfs.nvim", -- neovim SSH like vscode but using fs
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -160,24 +160,59 @@ return {
       -- refer to the configuration section below
     }
   },
-  "hat0uma/csvview.nvim",
-  ---@module "csvview"
-  ---@type CsvView.Options
-  opts = {
-    parser = { comments = { "#", "//" } },
-    keymaps = {
-      -- Text objects for selecting fields
-      textobject_field_inner = { "if", mode = { "o", "x" } },
-      textobject_field_outer = { "af", mode = { "o", "x" } },
-      -- Excel-like navigation:
-      -- Use <Tab> and <S-Tab> to move horizontally between fields.
-      -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
-      -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
-      jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
-      jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
-      jump_next_row = { "<Enter>", mode = { "n", "v" } },
-      jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+  {
+    "hat0uma/csvview.nvim",
+    ---@module "csvview"
+    ---@type CsvView.Options
+    opts = {
+      parser = { comments = { "#", "//" } },
+      keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
+        -- Excel-like navigation:
+        -- Use <Tab> and <S-Tab> to move horizontally between fields.
+        -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+        -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+        jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+        jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+        jump_next_row = { "<Enter>", mode = { "n", "v" } },
+        jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+      },
     },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
   },
-  cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  {
+    "huypl53/acterm.nvim",
+    config = function()
+      require("acterm").setup(
+        {
+          sidebar = {
+            width = 25, -- Sidebar width in columns
+          },
+          main = {
+            width = 0.7,         -- Main pane width in columns
+            height = 0.8,        -- Main pane height in rows
+          },
+          gap = 1,               -- Gap between panes
+          layout = 'horizontal', -- Layout direction ('horizontal' or 'vertical')
+          auto_create = true,    -- Auto-create terminal when opening UI
+          -- wrap_around = true,           -- Wrap around when cycling terminals
+          -- border = 'rounded',           -- Border style ('single', 'double', 'rounded', 'shadow')
+          -- winblend = 10,                -- Window transparency (0-100)
+          keys = {
+            toggle = '<leader>tt', -- Toggle UI
+            new = '<leader>tn',    -- Create new terminal
+            next = '<leader>tj',   -- Next terminal
+            prev = '<leader>tk',   -- Previous terminal
+          },
+
+          custom_commands = {
+            rg = { cmd = "rg --files", key = "<leader>tr" },
+            lg = { cmd = "lazygit", key = "<leader>tg" },
+          },
+        }
+      )
+    end
+  }
 }
