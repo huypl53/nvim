@@ -184,11 +184,12 @@ return {
   },
   {
     "huypl53/acterm.nvim",
+    -- dev = true,
     config = function()
       require("acterm").setup(
         {
           sidebar = {
-            width = 25, -- Sidebar width in columns
+            width = 0.1, -- Sidebar width in columns
           },
           main = {
             width = 0.7,         -- Main pane width in columns
@@ -201,10 +202,12 @@ return {
           -- border = 'rounded',           -- Border style ('single', 'double', 'rounded', 'shadow')
           -- winblend = 10,                -- Window transparency (0-100)
           keys = {
-            toggle = '<leader>tt', -- Toggle UI
-            new = '<leader>tn',    -- Create new terminal
-            next = '<leader>tj',   -- Next terminal
-            prev = '<leader>tk',   -- Previous terminal
+            toggle = '<leader>tt',         -- Toggle UI
+            new = '<leader>tn',            -- Create new terminal
+            next = '<C-j>',                -- Next terminal
+            prev = '<C-k>',                -- Previous terminal
+            focus_sidebar = '<leader>ts',  -- Focus sidebar
+            toggle_sidebar = '<leader>tp', -- Toggle sidebar visibility
           },
 
           custom_commands = {
