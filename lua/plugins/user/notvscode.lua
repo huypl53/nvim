@@ -152,15 +152,6 @@ return {
     version = '2.*',
   },
   {
-    "y3owk1n/time-machine.nvim", -- Undo. Redo. Time travel. Take control of your edit history like never before.
-    version = "*",               -- remove this if you want to use the `main` branch
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  },
-  {
     "hat0uma/csvview.nvim",
     ---@module "csvview"
     ---@type CsvView.Options
@@ -184,7 +175,8 @@ return {
   },
   {
     "huypl53/acterm.nvim",
-    -- dev = true,
+    dir = '/home/huypham/code/spare/acterm.nvim',
+    dev = true,
     config = function()
       require("acterm").setup(
         {
@@ -192,8 +184,8 @@ return {
             width = 0.1, -- Sidebar width in columns
           },
           main = {
-            width = 0.7,         -- Main pane width in columns
-            height = 0.8,        -- Main pane height in rows
+            width = 0.9,         -- Main pane width in columns
+            height = 0.9,        -- Main pane height in rows
           },
           gap = 1,               -- Gap between panes
           layout = 'horizontal', -- Layout direction ('horizontal' or 'vertical')
