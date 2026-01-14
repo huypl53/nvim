@@ -125,11 +125,11 @@ return {
       })
     end,
   },
-  -- {
-  --   'akinsho/toggleterm.nvim',
-  --   version = "*",
-  --   config = true
-  -- },                             -- Terminal inside vim
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true
+  },                             -- Terminal inside vim
   {
     "nosduco/remote-sshfs.nvim", -- neovim SSH like vscode but using fs
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -173,41 +173,4 @@ return {
     },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
   },
-  {
-    "huypl53/acterm.nvim",
-    dir = '/home/huypham/code/spare/acterm.nvim',
-    dev = true,
-    config = function()
-      require("acterm").setup(
-        {
-          sidebar = {
-            width = 0.1, -- Sidebar width in columns
-          },
-          main = {
-            width = 0.9,         -- Main pane width in columns
-            height = 0.9,        -- Main pane height in rows
-          },
-          gap = 1,               -- Gap between panes
-          layout = 'horizontal', -- Layout direction ('horizontal' or 'vertical')
-          auto_create = true,    -- Auto-create terminal when opening UI
-          -- wrap_around = true,           -- Wrap around when cycling terminals
-          -- border = 'rounded',           -- Border style ('single', 'double', 'rounded', 'shadow')
-          -- winblend = 10,                -- Window transparency (0-100)
-          keys = {
-            toggle = '<leader>tt',         -- Toggle UI
-            new = '<leader>tn',            -- Create new terminal
-            next = '<C-j>',                -- Next terminal
-            prev = '<C-k>',                -- Previous terminal
-            focus_sidebar = '<leader>ts',  -- Focus sidebar
-            toggle_sidebar = '<leader>tp', -- Toggle sidebar visibility
-          },
-
-          custom_commands = {
-            rg = { cmd = "rg --files", key = "<leader>tr" },
-            lg = { cmd = "lazygit", key = "<leader>tg" },
-          },
-        }
-      )
-    end
-  }
 }
