@@ -18,6 +18,7 @@ local function make_popup(options)
 end
 
 local actions = require("telescope.actions")
+local action_state = require('telescope.actions.state')
 local builtin = require("telescope.builtin")
 local lga_actions = require("telescope-live-grep-args.actions")
 
@@ -308,6 +309,47 @@ telescope.setup({
 telescope.load_extension("file_browser")
 telescope.load_extension("live_grep_args")
 
+-- Copy file paths to clipboard (relative or absolute)
+local function copy_paths_and_close(prompt_bufnr, mode)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local selections = picker:get_multi_selection()
+
+  -- if no multi-selection, use the currently selected entry
+  if not selections or #selections == 0 then
+    local entry = action_state.get_selected_entry()
+    if not entry then
+      vim.notify("No entry selected", vim.log.levels.WARN)
+      return
+    end
+    selections = { entry }
+  end
+
+  local paths = {}
+  for _, entry in ipairs(selections) do
+    local raw_path = entry.path or entry.filename or entry.value or ""
+    local path
+
+    if mode == "absolute" then
+      -- Ensure absolute path
+      path = vim.fn.fnamemodify(raw_path, ':p')
+    elseif mode == "relative" then
+      -- Convert to relative path from cwd
+      path = vim.fn.fnamemodify(raw_path, ':.')
+    else
+      path = raw_path
+    end
+
+    table.insert(paths, path)
+  end
+
+  vim.fn.setreg('+', table.concat(paths, '\n'))
+
+  local msg = #paths == 1
+      and string.format("Copied %s: %s", mode, paths[1])
+      or string.format("Copied %d %s path(s)", #paths, mode)
+  vim.notify(msg, vim.log.levels.INFO)
+end
+
 vim.keymap.set("n", ";f", function()
   builtin.find_files({
     no_ignore = false,
@@ -342,6 +384,17 @@ vim.keymap.set("n", "sf", function()
     previewer = true,
     initial_mode = "normal",
     layout_config = { height = 40 },
+    attach_mappings = function(prompt_bufnr, map)
+      -- <C-y> for relative paths
+      map('i', '<C-y>', function() copy_paths_and_close(prompt_bufnr, "relative") end)
+      map('n', '<C-y>', function() copy_paths_and_close(prompt_bufnr, "relative") end)
+
+      -- <C-a> for absolute paths
+      map('i', '<C-a>', function() copy_paths_and_close(prompt_bufnr, "absolute") end)
+      map('n', '<C-a>', function() copy_paths_and_close(prompt_bufnr, "absolute") end)
+
+      return true
+    end,
   })
 end)
 
