@@ -38,11 +38,37 @@ local lazygit = Terminal:new({
   end,
 })
 
-function _term_lazygit_toggle()
+function Term_lazygit_toggle()
   lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua _term_lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua Term_lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+local explorer = Terminal:new({
+  cmd = "ranger",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "single",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+    -- Reduce timeout to prevent double Esc press
+    vim.keymap.set('t', '<Esc>', '<Esc>', { buffer = term.bufnr, nowait = true })
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+function Term_explorer_toggle()
+  explorer:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>te", "<cmd>lua Term_explorer_toggle()<CR>",
+  { noremap = true, silent = true, desc = 'toggle term explorer' })
 
 --#region
 local toggle_float_term = Terminal:new({

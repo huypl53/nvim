@@ -59,7 +59,7 @@ telescope.setup({
         ["<M-h>"] = actions.results_scrolling_left,
       },
     },
-    file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", "build", "dist", ".git", ".venv" },
+    file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", "build", "dist", ".git/", ".venv" },
     layout_strategy = "flex",
     layout_config = {
       horizontal = {
@@ -277,11 +277,13 @@ telescope.setup({
           ["<C-w>"] = function()
             vim.cmd("normal vbd")
           end,
+          ["<C-h>"] = fb_actions.toggle_hidden,
         },
         ["n"] = {
           -- your custom normal mode mappings
           ["N"] = fb_actions.create,
           ["h"] = fb_actions.goto_parent_dir,
+          ["<C-h>"] = fb_actions.toggle_hidden,
           ["/"] = function()
             vim.cmd("startinsert")
           end,

@@ -74,7 +74,7 @@ gitsigns.setup({
 
     -- Actions
     map('n', '<leader>hs', gitsigns.stage_hunk)
-    map('n', '<leader>hr', gitsigns.reset_hunk)
+    map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'Git reset hunk' })
 
     map('v', '<leader>hs', function()
       gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
