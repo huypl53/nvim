@@ -59,7 +59,7 @@ telescope.setup({
         ["<M-h>"] = actions.results_scrolling_left,
       },
     },
-    file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json", "build", "dist", ".git/", ".venv" },
+    file_ignore_patterns = { "node_modules/", "yarn.lock", "package-lock.json", "build/", "dist/", ".git/", ".venv/" },
     layout_strategy = "flex",
     layout_config = {
       horizontal = {
