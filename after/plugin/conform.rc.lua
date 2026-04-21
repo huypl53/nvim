@@ -3,16 +3,21 @@ if not status then
   return
 end
 
+local js_formatters = { "prettierd", "prettier" }
+if vim.fn.executable("deno") == 1 then
+  table.insert(js_formatters, 1, "deno_fmt")
+end
+
 conform.setup({
   formatters_by_ft = {
     lua = { "stylua" },
     -- Conform will run multiple formatters sequentially
     python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
     -- Use a sub-list to run only the first available formatter
-    javascript = { "deno_fmt", "prettierd", "prettier" },
-    javascriptreact = { "deno_fmt", "prettierd", "prettier" },
-    typescript = { "deno_fmt", "prettierd", "prettier" },
-    typescriptreact = { "deno_fmt", "prettierd", "prettier" },
+    javascript = js_formatters,
+    javascriptreact = js_formatters,
+    typescript = js_formatters,
+    typescriptreact = js_formatters,
     json = { "jq" },
     sql = { "sql_formatter" },
   },

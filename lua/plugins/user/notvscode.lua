@@ -20,6 +20,7 @@ return {
   -- "jose-elias-alvarez/null-ls.nvim", -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   "neovim/nvim-lspconfig", -- LSP
   "nvimdev/lspsaga.nvim",  -- LSP UIs
   "saadparwaiz1/cmp_luasnip",

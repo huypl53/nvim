@@ -9,6 +9,21 @@ end
 
 mason.setup({})
 
+local ok3, mason_tool_installer = pcall(require, "mason-tool-installer")
+if ok3 then
+  mason_tool_installer.setup({
+    ensure_installed = {
+      "stylua",
+      "ruff",
+      "prettierd",
+      "prettier",
+      "jq",
+      "sql-formatter",
+    },
+    run_on_start = true,
+    auto_update = false,
+  })
+end
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 local enable_format_on_save = function(_, bufnr)
