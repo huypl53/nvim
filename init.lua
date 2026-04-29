@@ -1,41 +1,46 @@
-require('base')
-require('highlights')
-require('maps')
-require('grep')
-require('ultra_maps')
+require("base")
+require("highlights")
+require("maps")
+require("grep")
+require("ultra_maps")
 
 local has = vim.fn.has
-local is_mac = has "macunix"
-local is_win = has "win32"
-local is_unix = has "unix"
+local is_mac = has("macunix")
+local is_win = has("win32")
+local is_unix = has("unix")
+local is_wsl = vim.fn.has("unix") == 1 and vim.fn.environ().WSL_DISTRO_NAME ~= nil
 
 if is_mac then
-  require('macos')
+	require("macos")
 end
 if is_win then
-  require('windows')
+	require("windows")
 end
 
 if is_unix then
-  require('unix')
+	require("unix")
+end
+
+if is_wsl then
+	require("windows")
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  -- if not (vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	-- if not (vim.loop).fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('plugins')
-require('tmux-send')
-require('terminal-send').setup()
-require('window-send').setup()
+require("plugins")
+require("tmux-send")
+require("terminal-send").setup()
+require("window-send").setup()
