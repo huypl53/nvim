@@ -1,16 +1,21 @@
+-- Sync system clipboards
 vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
-vim.opt.shell = "cmd"
 
-if vim.env.TMUX then
+-- REMOVE OR CONDITIONALIZE THIS: Only use "cmd" if you are actually on Windows
+-- vim.opt.shell = "cmd"
+
+-- Force Tmux integration directly if tmux is installed,
+-- ignoring whether the environment variable survived the agent spawn.
+if vim.fn.executable("tmux") == 1 then
 	vim.g.clipboard = {
-		name = "tmux",
+		name = "tmux-fallback",
 		copy = {
-			["+"] = "tmux load-buffer -w -",
-			["*"] = "tmux load-buffer -w -",
+			["+"] = { "tmux", "load-buffer", "-w", "-" },
+			["*"] = { "tmux", "load-buffer", "-w", "-" },
 		},
 		paste = {
-			["+"] = "tmux save-buffer -",
-			["*"] = "tmux save-buffer -",
+			["+"] = { "tmux", "save-buffer", "-" },
+			["*"] = { "tmux", "save-buffer", "-" },
 		},
 		cache_enabled = false,
 	}
