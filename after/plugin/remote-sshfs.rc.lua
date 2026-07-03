@@ -1,74 +1,117 @@
-local status, sshfs = pcall(require, "remote-sshfs")
-if (not status) then return end
+local function ensure_sshfs_setup()
+  local status, sshfs = pcall(require, "remote-sshfs")
+  if not status then
+    vim.notify("remote-sshfs is not available", vim.log.levels.WARN)
+    return nil
+  end
 
-sshfs.setup {
-  connections = {
-    ssh_configs = { -- which ssh configs to parse for hosts list
-      vim.fn.expand "$HOME" .. "/.ssh/config",
-      "/etc/ssh/ssh_config",
-      -- "/path/to/custom/ssh_config"
-    },
-    -- NOTE: Can define ssh_configs similarly to include all configs in a folder
-    -- ssh_configs = vim.split(vim.fn.globpath(vim.fn.expand "$HOME" .. "/.ssh/configs", "*"), "\n")
-    sshfs_args = { -- arguments to pass to the sshfs command
-      "-o reconnect",
-      "-o ConnectTimeout=5",
-    },
-  },
-  mounts = {
-    base_dir = vim.fn.expand "$HOME" .. "/.sshfs/", -- base directory for mount points
-    unmount_on_exit = true,                         -- run sshfs as foreground, will unmount on vim exit
-  },
-  handlers = {
-    on_connect = {
-      change_dir = true, -- when connected change vim working directory to mount point
-    },
-    on_disconnect = {
-      clean_mount_folders = false, -- remove mount point folder on disconnect/unmount
-    },
-    on_edit = {},                  -- not yet implemented
-  },
-  ui = {
-    select_prompts = false, -- not yet implemented
-    confirm = {
-      connect = true,       -- prompt y/n when host is selected to connect to
-      change_dir = false,   -- prompt y/n to change working directory on connection (only applicable if handlers.on_connect.change_dir is enabled)
-    },
-  },
-  log = {
-    enabled = false,  -- enable logging
-    truncate = false, -- truncate logs
-    types = {         -- enabled log types
-      all = false,
-      util = false,
-      handler = false,
-      sshfs = false,
-    },
-  },
-}
+  if vim.g.remote_sshfs_setup then
+    return sshfs
+  end
 
-local api = require('remote-sshfs.api')
+  local ok, err = pcall(sshfs.setup, {
+    connections = {
+      ssh_configs = { -- which ssh configs to parse for hosts list
+        vim.fn.expand "$HOME" .. "/.ssh/config",
+        "/etc/ssh/ssh_config",
+        -- "/path/to/custom/ssh_config"
+      },
+      -- NOTE: Can define ssh_configs similarly to include all configs in a folder
+      -- ssh_configs = vim.split(vim.fn.globpath(vim.fn.expand "$HOME" .. "/.ssh/configs", "*"), "\n")
+      sshfs_args = {
+        "-o reconnect",
+        "-o ConnectTimeout=5",
+      },
+    },
+    mounts = {
+      base_dir = vim.fn.expand "$HOME" .. "/.sshfs/",
+      unmount_on_exit = true,
+    },
+    handlers = {
+      on_connect = {
+        change_dir = true,
+      },
+      on_disconnect = {
+        clean_mount_folders = false,
+      },
+      on_edit = {},
+    },
+    ui = {
+      select_prompts = false, -- not yet implemented
+      confirm = {
+        connect = true,
+        change_dir = false,
+      },
+    },
+    log = {
+      enabled = false,
+      truncate = false,
+      types = {
+        all = false,
+        util = false,
+        handler = false,
+        sshfs = false,
+      },
+    },
+  })
 
-vim.keymap.set('n', '<leader>sc', api.connect, { desc = "Remote sshfs connect to host" })
-vim.keymap.set('n', '<leader>sd', api.disconnect, { desc = "Remote sshfs disconnect to host" })
-vim.keymap.set('n', '<leader>se', api.edit, { desc = "Remote sshfs edit hosts" })
+  if not ok then
+    vim.notify("Failed to initialize remote-sshfs: " .. tostring(err), vim.log.levels.ERROR)
+    return nil
+  end
 
--- (optional) Override telescope find_files and live_grep to make dynamic based on if connected to host
-local builtin = require("telescope.builtin")
-local connections = require("remote-sshfs.connections")
+  vim.g.remote_sshfs_setup = true
+  return sshfs
+end
+
+local function call_sshfs(fn_name, ...)
+  local ok, api = pcall(require, "remote-sshfs.api")
+  if not ok then
+    vim.notify("remote-sshfs api is not available", vim.log.levels.ERROR)
+    return
+  end
+
+  local sshfs = ensure_sshfs_setup()
+  if not sshfs then
+    return
+  end
+
+  api[fn_name](...)
+end
+
+local function sshfs_connected()
+  local ok, connections = pcall(require, "remote-sshfs.connections")
+  if not ok then
+    return false
+  end
+
+  return connections.is_connected and connections.is_connected()
+end
+
+vim.keymap.set("n", "<leader>sc", function()
+  call_sshfs("connect")
+end, { desc = "Remote sshfs connect to host" })
+
+vim.keymap.set("n", "<leader>sd", function()
+  call_sshfs("disconnect")
+end, { desc = "Remote sshfs disconnect to host" })
+
+vim.keymap.set("n", "<leader>se", function()
+  call_sshfs("edit")
+end, { desc = "Remote sshfs edit hosts" })
 
 vim.keymap.set("n", "<leader>sf", function()
-  if connections.is_connected() then
-    api.find_files()
+  if sshfs_connected() then
+    call_sshfs("find_files")
   else
-    builtin.find_files()
+    require("telescope.builtin").find_files()
   end
 end, { desc = "Remote sshfs find files" })
 
 vim.keymap.set("n", "<leader>sg", function()
-  if connections.is_connected() then
-    api.live_grep()
+  if sshfs_connected() then
+    call_sshfs("live_grep")
   else
-    builtin.live_grep()
+    require("telescope.builtin").live_grep()
   end
 end, { desc = "Remote sshfs live grep" })
