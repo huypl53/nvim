@@ -456,21 +456,53 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "gf", "<Cmd>Telescope lsp_references<CR>", opts)
 
-local function jump_to_buffer_any_tab(bufnr)
+-- buffers management
+local function find_buffer_window(bufnr)
 	for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
 		for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
 			if vim.api.nvim_win_get_buf(win) == bufnr then
-				vim.api.nvim_set_current_tabpage(tab)
-				vim.api.nvim_set_current_win(win)
-				return true
+				return tab, win
 			end
 		end
+	end
+end
+
+local function jump_to_buffer_any_tab(bufnr)
+	local tab, win = find_buffer_window(bufnr)
+
+	if tab and win then
+		vim.api.nvim_set_current_tabpage(tab)
+		vim.api.nvim_set_current_win(win)
+		return true
 	end
 
 	return false
 end
 
-local function telescope_buffers_jump()
+local function delete_buffer(bufnr)
+	if vim.api.nvim_buf_is_valid(bufnr) then
+		pcall(vim.api.nvim_buf_delete, bufnr, { force = false })
+	end
+end
+
+local function save_current_place()
+	return {
+		tab = vim.api.nvim_get_current_tabpage(),
+		win = vim.api.nvim_get_current_win(),
+	}
+end
+
+local function restore_place(place)
+	if place.tab and vim.api.nvim_tabpage_is_valid(place.tab) then
+		vim.api.nvim_set_current_tabpage(place.tab)
+	end
+
+	if place.win and vim.api.nvim_win_is_valid(place.win) then
+		vim.api.nvim_set_current_win(place.win)
+	end
+end
+
+local function telescope_buffers_advanced()
 	builtin.buffers({
 		attach_mappings = function(prompt_bufnr, map)
 			local jump = function()
@@ -482,14 +514,48 @@ local function telescope_buffers_jump()
 				end
 			end
 
+			local close_window_and_delete_buffer = function()
+				local entry = action_state.get_selected_entry()
+				local place = save_current_place()
+
+				local tab, win = find_buffer_window(entry.bufnr)
+
+				if tab and win then
+					vim.api.nvim_set_current_tabpage(tab)
+					pcall(vim.api.nvim_win_close, win, false)
+				end
+
+				pcall(vim.api.nvim_buf_delete, entry.bufnr, { force = false })
+
+				restore_place(place)
+			end
+			local close_tab_and_buffer = function()
+				local entry = action_state.get_selected_entry()
+				local tab = find_buffer_window(entry.bufnr)
+
+				actions.close(prompt_bufnr)
+
+				if tab then
+					vim.api.nvim_set_current_tabpage(tab)
+					pcall(vim.cmd, "tabclose")
+				end
+
+				delete_buffer(entry.bufnr)
+			end
 			map("i", "<CR>", jump)
 			map("n", "<CR>", jump)
+
+			map("i", "<C-w>", close_tab_and_buffer)
+			map("n", "<C-w>", close_tab_and_buffer)
+
+			map("i", "<C-q>", close_window_and_delete_buffer)
+			map("n", "<C-q>", close_window_and_delete_buffer)
 
 			return true
 		end,
 	})
 end
 
-vim.keymap.set("n", "<leader>\\", telescope_buffers_jump, {
-	desc = "Buffers: jump to visible window/tab",
+vim.keymap.set("n", "<leader>\\", telescope_buffers_advanced, {
+	desc = "Buffers: jump / close window / close tab",
 })
