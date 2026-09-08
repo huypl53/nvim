@@ -3,10 +3,9 @@ if not status then
   return
 end
 
-local js_formatters = { "prettierd", "prettier" }
-if vim.fn.executable("deno") == 1 then
-  table.insert(js_formatters, 1, "deno_fmt")
-end
+-- Prefer the faster prettierd daemon and fall back to project-local Prettier.
+-- Run only the first available formatter so files are never formatted twice.
+local js_formatters = { "prettierd", "prettier", stop_after_first = true }
 
 conform.setup({
   formatters_by_ft = {
@@ -16,24 +15,22 @@ conform.setup({
     -- Use a sub-list to run only the first available formatter
     javascript = js_formatters,
     javascriptreact = js_formatters,
+    ["javascript.jsx"] = js_formatters,
+    jsx = js_formatters,
     typescript = js_formatters,
     typescriptreact = js_formatters,
+    ["typescript.tsx"] = js_formatters,
     json = { "jq" },
     sql = { "sql_formatter" },
   },
-  -- format_on_save = function(bufnr)
-  format_after_save = function(bufnr)
+  format_on_save = function(bufnr)
     -- Disable with a global or buffer-local variable
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
       return
     end
-    return { lsp_format = "fallback", async = true }
+    return { lsp_format = "never" }
   end,
 })
-
-conform.formatters.prettier = {
-  prepend_args = { "--prose-wrap", "always" },
-}
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
   if args.bang then
