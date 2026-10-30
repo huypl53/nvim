@@ -13,6 +13,7 @@ nvimtree.setup({
 	filters = {
 		dotfiles = false,
 		custom = { "^.git$" },
+		git_ignored = true,
 	},
 	diagnostics = {
 		enable = true,

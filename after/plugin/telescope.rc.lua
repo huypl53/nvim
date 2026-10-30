@@ -336,6 +336,7 @@ telescope.setup({
 				i = {
 					["<C-k>"] = lga_actions.quote_prompt(),
 					["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+					["<C-o>"] = lga_actions.quote_prompt({ postfix = ' --iglob "!**/tests/*"' }),
 				},
 			},
 			-- ... also accepts theme settings, for example:
@@ -452,9 +453,37 @@ end)
 vim.keymap.set("n", ";R", function()
 	telescope.extensions.live_grep_args.live_grep_args()
 end)
-local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "gf", "<Cmd>Telescope lsp_references<CR>", opts)
+local function lsp_references_toggle_tests()
+	local ignore_tests = false
+	local test_patterns = { "test/", "tests/", "%.spec%.", "%.test%." }
+
+	builtin.lsp_references({
+		attach_mappings = function(prompt_bufnr, map)
+			-- Keymap to toggle the ignore state dynamically
+			map({ "i", "n" }, "<C-u>", function()
+				local current_picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+				ignore_tests = not ignore_tests
+
+				if ignore_tests then
+					-- Inject test patterns into the active picker config
+					current_picker.file_ignore_patterns = test_patterns
+					print("Ignoring test files")
+				else
+					-- Reset to default setup
+					current_picker.file_ignore_patterns = nil
+					print("Showing all files")
+				end
+
+				-- Refresh the picker view with the updated filters
+				current_picker:refresh(current_picker.finder, { reset_prompt = true })
+			end)
+			return true
+		end,
+	})
+end
+-- vim.keymap.set("n", "gf", "<Cmd>Telescope lsp_references<CR>", opts)
+vim.keymap.set("n", "gf", lsp_references_toggle_tests, { desc = "LSP References with Test Toggle" })
 
 -- buffers management
 local function find_buffer_window(bufnr)
