@@ -4,11 +4,10 @@ vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
 -- REMOVE OR CONDITIONALIZE THIS: Only use "cmd" if you are actually on Windows
 -- vim.opt.shell = "cmd"
 
--- Force Tmux integration directly if tmux is installed,
--- ignoring whether the environment variable survived the agent spawn.
-if vim.fn.executable("tmux") == 1 then
+-- Tmux integration when running inside tmux
+if vim.env.TMUX then
 	vim.g.clipboard = {
-		name = "tmux-fallback",
+		name = "tmux",
 		copy = {
 			["+"] = { "tmux", "load-buffer", "-w", "-" },
 			["*"] = { "tmux", "load-buffer", "-w", "-" },

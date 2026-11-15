@@ -5,24 +5,17 @@ require("grep")
 require("ultra_maps")
 
 local has = vim.fn.has
-local is_mac = has("macunix")
-local is_win = has("win32")
-local is_unix = has("unix")
-local is_wsl = vim.fn.has("unix") == 1 and vim.fn.environ().WSL_DISTRO_NAME ~= nil
+local is_wsl = has("unix") == 1 and vim.fn.environ().WSL_DISTRO_NAME ~= nil
+local is_mac = has("macunix") == 1
+local is_win = has("win32") == 1
+local is_unix = has("unix") == 1 and not is_mac and not is_wsl
 
 if is_mac then
 	require("macos")
-end
-if is_win then
+elseif is_wsl or is_win then
 	require("windows")
-end
-
-if is_unix then
+elseif is_unix then
 	require("unix")
-end
-
-if is_wsl then
-	require("windows")
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

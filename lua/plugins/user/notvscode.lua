@@ -41,7 +41,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
 			-- require 'nvim-treesitter.install'.compilers = { 'zig',}
-			if vim.fn.has("win32") or vim.fn.has("macunix") then
+			if vim.fn.has("win32") == 1 or vim.fn.has("macunix") == 1 then
 				require("nvim-treesitter.install").compilers = { "clang" }
 			else
 				require("nvim-treesitter.install").compilers = { "gcc" }
