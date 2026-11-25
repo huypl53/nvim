@@ -29,22 +29,33 @@ local function clipboard_copy(lines, regtype)
 end
 
 local function clipboard_paste()
+	local raw = ""
 	if vim.env.TMUX then
-		local out = vim.fn.systemlist({ "tmux", "save-buffer", "-" })
-		if vim.v.shell_error == 0 and #out > 0 then
-			return { out, "v" }
+		raw = vim.fn.system({ "tmux", "save-buffer", "-" })
+		if vim.v.shell_error ~= 0 then
+			raw = ""
 		end
 	end
-	if vim.fn.has("mac") == 1 and vim.fn.executable("pbpaste") == 1 then
-		return { vim.fn.systemlist({ "pbpaste" }), "v" }
+	if raw == "" and vim.fn.has("mac") == 1 and vim.fn.executable("pbpaste") == 1 then
+		raw = vim.fn.system({ "pbpaste" })
 	end
-	if vim.fn.executable("tmux") == 1 then
-		local out = vim.fn.systemlist({ "tmux", "save-buffer", "-" })
-		if vim.v.shell_error == 0 and #out > 0 then
-			return { out, "v" }
+	if raw == "" and vim.fn.executable("tmux") == 1 then
+		raw = vim.fn.system({ "tmux", "save-buffer", "-" })
+		if vim.v.shell_error ~= 0 then
+			raw = ""
 		end
 	end
-	return { { "" }, "v" }
+
+	raw = raw:gsub("\r", "")
+	if raw == "" then
+		return { { "" }, "v" }
+	end
+
+	local lines = vim.split(raw, "\n", { plain = true })
+	if #lines > 1 and lines[#lines] == "" then
+		return { lines, "V" }
+	end
+	return { lines, "v" }
 end
 
 vim.g.clipboard = {
